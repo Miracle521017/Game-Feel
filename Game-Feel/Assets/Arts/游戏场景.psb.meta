@@ -511,6 +511,28 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 1092}
     spritePosition: {x: 0, y: 0}
+  - name: "\u6E38\u620F\u573A\u666F_0"
+    originalName: 
+    pivot: {x: 0.6496409, y: 0.14424944}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2316
+      y: 1656
+      width: 353
+      height: 525
+    spriteID: 0698d1bde9e825e4fa3c2ecc0614fbd4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2316, y: 1656}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
