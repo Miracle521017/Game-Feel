@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public KeyCode left=KeyCode.A;
+    public KeyCode right=KeyCode.D;
     void Update()
     {
-        
+        if (Input.GetKeyDown(left))
+        {
+            Debug.Log("左手切下！");
+        }
+        if (Input.GetKeyDown(right))
+        {
+            Debug.Log("右手切下！");
+        }
     }
 }
