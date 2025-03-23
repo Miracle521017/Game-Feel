@@ -5,15 +5,21 @@ using UnityEngine.UI;
 
 public class DrumCollect : MonoBehaviour
 {
+    public Transform[] trackPoses;
+    
+    public Transform line;
+    
+    public GameObject pointPre;
+
     public AudioSource bgm;
 
     public Slider bgmSlider;
 
     private bool _dragSlider=false;
 
-    private float _cooldown = 0.05f;
+    [SerializeField]private float _cooldown = 0.05f;
 
-    public int CurrentTrackId;
+    public int CurrentTrackId=-1;
 
     public TrackTimerLists_Dic trackTimerLists_Dic;
 
@@ -26,15 +32,19 @@ public class DrumCollect : MonoBehaviour
 
     void OnClickPlay()
     { 
-        if (bgm.isPlaying)
+        if(Input.GetKeyUp(KeyCode.Space))
         {
-            // bgm.Pause();
-            //Debug.Log("ÔÝÍ££¡");
+            if (bgm.isPlaying)
+            {
+                bgm.Pause();
+                Debug.Log("ÔÝÍ££¡");
+            }
+            else
+            {
+                bgm.Play();
+            }
         }
-        else
-        {
-            bgm.Play();
-        }
+       
     }
     // Update is called once per frame
     void Update()
@@ -70,7 +80,7 @@ public class DrumCollect : MonoBehaviour
         PointGameObject pNode = new PointGameObject();
         pNode.timer = currentTime;
         pNode.trackId = trackId;
-        //pNode.gameObject = Instantiate(pointPre);
+        pNode.gameObject = Instantiate(pointPre);
         trackTimerLists_Dic.trackTimerLists.Add(pNode);
     }
     private void AddPointFromKeyCode(KeyCode keyCode)
