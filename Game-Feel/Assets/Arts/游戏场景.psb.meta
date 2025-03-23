@@ -283,48 +283,6 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 1401, y: 301}
     spritePosition: {x: 531, y: 154}
-  - name: "\u56FE\u5C42 18"
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2683
-      y: 1120
-      width: 411
-      height: 360
-    spriteID: 5ed0426a4345aa64bb4adebd86ce0db9
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2062, y: 728}
-    spritePosition: {x: 621, y: 392}
-  - name: "\u56FE\u5C42 17"
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2683
-      y: 1488
-      width: 347
-      height: 133
-    spriteID: 0df96516e811a7c44b68f8f5cf613215
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2209, y: 648}
-    spritePosition: {x: 474, y: 840}
   - name: "\u56FE\u5C42 8"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -472,27 +430,6 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 0, y: 0}
-  - name: "\u80CC\u666F"
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1092
-      width: 1920
-      height: 1080
-    spriteID: 19d6c3684be90764d91730a60a9187de
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 1092}
-    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -519,8 +456,6 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
-  pipeline: {instanceID: 0}
-  pipelineVersion: 
   padding: 4
   spriteSizeExpand: 0
   spriteCategoryList:
