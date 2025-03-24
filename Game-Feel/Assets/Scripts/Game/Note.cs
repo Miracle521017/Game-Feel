@@ -29,7 +29,6 @@ public class Note : MonoBehaviour
     {
         if (noteCreator != null)
             noteCreator.DeletePoint(gameObject);
-
         Destroy(gameObject);
     }
 }
