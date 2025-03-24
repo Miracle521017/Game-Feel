@@ -167,17 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d256322676cea34a947d2df90e4ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
-  bgm: {fileID: 1506042696}
-  bgmSlider: {fileID: 1752084123}
-  pointPre: {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
-  notesparent: {fileID: 360500259}
-  tempTrackList: []
+  noteSpeed: 15
   trackPositions:
   - -5
   - -2
   - 2.4
   - 5.6
+  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
+  bgm: {fileID: 1506042696}
+  bgmSlider: {fileID: 1752084123}
+  pointPre: {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
+  notesparent: {fileID: 360500259}
 --- !u!1 &211006238
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,8 +280,8 @@ Transform:
   m_GameObject: {fileID: 280216579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 1.86, z: -0.03560088}
-  m_LocalScale: {x: 1.1514268, y: 1.1514268, z: 1.1514266}
+  m_LocalPosition: {x: -9.31, y: 1.7, z: -0.03560088}
+  m_LocalScale: {x: 1.1936842, y: 1.1936842, z: 1.1936839}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467657629}
@@ -594,8 +594,8 @@ Transform:
   m_GameObject: {fileID: 599755956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.48, y: 2.01, z: -0.03560088}
-  m_LocalScale: {x: 1.1659251, y: 1.1659251, z: 1.1659251}
+  m_LocalPosition: {x: -10.41, y: 1.84, z: -0.03560088}
+  m_LocalScale: {x: 1.2165264, y: 1.2165264, z: 1.2165264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467657629}
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246886068}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d930d5b59a9868243ba5ac42a1da777a, type: 3}
   m_Name: 

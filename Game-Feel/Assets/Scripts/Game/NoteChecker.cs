@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteChecker : MonoBehaviour
 {
     public KeyCode targetKey = KeyCode.A;
+
     [SerializeField]private List<Collider2D> currentNotes = new List<Collider2D>();
 
     private void Update()
@@ -14,7 +15,7 @@ public class NoteChecker : MonoBehaviour
         {
             Debug.Log("音符在触发区域内时按下了 " + targetKey);
             // 这里可以添加触发后的处理逻辑
-           currentNotes.Clear(); // 如果需要清除已触发的音符
+          // currentNotes.Clear(); // 如果需要清除已触发的音符
         }
     }
 
