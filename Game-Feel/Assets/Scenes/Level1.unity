@@ -170,7 +170,7 @@ MonoBehaviour:
   trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
   bgm: {fileID: 1506042696}
   bgmSlider: {fileID: 1752084123}
-  pointPre: {fileID: 3862954239753551006, guid: b5e0789b39e5f044a820a65521042864, type: 3}
+  pointPre: {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
 --- !u!1 &211006238
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,9 +709,10 @@ GameObject:
   - component: {fileID: 869626797}
   - component: {fileID: 869626798}
   - component: {fileID: 869626799}
+  - component: {fileID: 869626800}
   m_Layer: 0
   m_Name: p1_l
-  m_TagString: Untagged
+  m_TagString: Checker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,6 +805,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &869626800
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869626796}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -6.362504, y: -1.3763479}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7595234, y: 3.415826}
+  m_EdgeRadius: 0
 --- !u!1 &914604690
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,9 +994,10 @@ GameObject:
   - component: {fileID: 1246886070}
   - component: {fileID: 1246886069}
   - component: {fileID: 1246886071}
+  - component: {fileID: 1246886072}
   m_Layer: 0
   m_Name: p1_r
-  m_TagString: Untagged
+  m_TagString: Checker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1062,6 +1090,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &1246886072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246886068}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.1554465, y: -1.415264}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 3.53, y: 5.68}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.76062584, y: 3.3176906}
+  m_EdgeRadius: 0
 --- !u!1 &1286931856
 GameObject:
   m_ObjectHideFlags: 0

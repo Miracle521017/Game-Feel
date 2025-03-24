@@ -6,9 +6,10 @@ public class NoteChecker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Checker")
+        if (collision.transform.tag == "Note")
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            Debug.Log("ÇÐ");
+           collision.GetComponent<SpriteRenderer>().color = Color.red;
             StartCoroutine(Clicked());
         }
     }

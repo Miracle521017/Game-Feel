@@ -324,13 +324,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368625504}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2ad9a55898231246986a222ac2b1f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cut: {fileID: 0}
   left: 276
   right: 275
+  leftAni: {fileID: 0}
+  leftAni_1: {fileID: 0}
+  rightAni: {fileID: 0}
+  rightAni_1: {fileID: 0}
 --- !u!4 &368625506
 Transform:
   m_ObjectHideFlags: 0
@@ -488,7 +493,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d485f6ffd61f45f4c934699865ac321c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8b063324953f0334aa8374b305ab9bc8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -959,13 +964,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159856950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2ad9a55898231246986a222ac2b1f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cut: {fileID: 0}
   left: 97
   right: 100
+  leftAni: {fileID: 0}
+  leftAni_1: {fileID: 0}
+  rightAni: {fileID: 0}
+  rightAni_1: {fileID: 0}
 --- !u!4 &1159856952
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,7 +1359,7 @@ MonoBehaviour:
   bgmSlider: {fileID: 1594425463}
   _cooldown: 0.05
   CurrentTrackId: 0
-  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
+  trackTimerLists_Dic: {fileID: 11400000, guid: fc4ec1325e8155044aa7259c0704df8b, type: 2}
   currentTrackCounts: 4
 --- !u!4 &1971425081
 Transform:
