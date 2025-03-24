@@ -46,7 +46,7 @@ public class LSPlayer : MonoBehaviour
                 hasMoved = false;
             }
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump")&&!currentPoint.islocked)
             {
                 leveiLoading = true;
                 theManager.LoadLevel();

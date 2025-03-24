@@ -14,7 +14,12 @@ public class NoteCreator : MonoBehaviour
 
     public GameObject pointPre;
 
+    public Transform notesparent;
+
     private List<PointGameObject>tempTrackList= new List<PointGameObject>();
+
+    [Header("轨道位置配置")]
+    public float[] trackPositions = new float[4]; // 存储4个轨道的x坐标
 
     private void Start()
     {
@@ -36,7 +41,7 @@ public class NoteCreator : MonoBehaviour
         PointGameObject pNode = new PointGameObject();
         pNode.timer = currentTime;
         pNode.trackId = trackId;
-        pNode.gameObject = Instantiate(pointPre);
+        pNode.gameObject = Instantiate(pointPre,notesparent);
        // trackTimerLists_Dic.trackTimerLists.Add(pNode);
         tempTrackList.Add(pNode); 
     }
@@ -45,7 +50,7 @@ public class NoteCreator : MonoBehaviour
     {
         foreach(var notes in tempTrackList)
         {
-            notes.gameObject.transform.position = new Vector3(notes.trackId, (bgm.time - notes.timer)*-15,0);
+            notes.gameObject.transform.position = new Vector3(trackPositions[notes.trackId], (bgm.time - notes.timer)*-15,0);
         }
 
    
