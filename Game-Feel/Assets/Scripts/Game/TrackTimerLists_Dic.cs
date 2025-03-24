@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="newTrackTimer",menuName="CreateDate/Create New TrackTimerData")]
+[CreateAssetMenu(fileName = "newTrackTimer", menuName = "CreateDate/Create New TrackTimerData")]
 public class TrackTimerLists_Dic : ScriptableObject
 {
-    public List<PointGameObject> trackTimerLists;
-}
-public class PointData
-{
-    public float timer;//时刻
-    public int trackId;//所在轨道
-
-    public PointData() { }
-
-    public PointData(float timer, int trackId)
-    {
-        this.timer = timer;
-        this.trackId = trackId;
-    }
+    public List<PointGameObject> trackTimerLists = new List<PointGameObject>();
 }
 
 [System.Serializable]
-public class PointGameObject : PointData
+public class PointGameObject
 {
+    public int trackId;
+    public float timer;
     public GameObject gameObject;
+
+    public PointGameObject() { }
+
+    public PointGameObject(int trackId, float timer)
+    {
+        this.trackId = trackId;
+        this.timer = timer;
+    }
 }
