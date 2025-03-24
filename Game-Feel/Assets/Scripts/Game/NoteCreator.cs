@@ -59,7 +59,7 @@ public class NoteCreator : MonoBehaviour
         });
     }
 
-    public void DeletePoint(GameObject noteObject) // 改为接收GameObject参数
+    public void DeletePoint(GameObject noteObject) 
     {
         var point = tempTrackList.Find(p => p.gameObject == noteObject);
         if (point != null)

@@ -27,8 +27,12 @@ public class Note : MonoBehaviour
 
     public void TriggerNote()
     {
+        // Ìí¼Ó¼Æ·ÖÂß¼­
+        GameManager.Instance?.AddScore();
+
         if (noteCreator != null)
             noteCreator.DeletePoint(gameObject);
         Destroy(gameObject);
+       
     }
 }
