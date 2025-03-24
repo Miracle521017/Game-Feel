@@ -6,16 +6,26 @@ public class NoteChecker : MonoBehaviour
 {
     public KeyCode targetKey = KeyCode.A;
 
-    [SerializeField]private List<Collider2D> currentNotes = new List<Collider2D>();
+    [SerializeField] private List<Collider2D> currentNotes = new List<Collider2D>();
 
-    private void Update()
+     private void Update()
     {
-        // 持续检测按键输入
         if (Input.GetKeyDown(targetKey) && currentNotes.Count > 0)
         {
-            Debug.Log("音符在触发区域内时按下了 " + targetKey);
-            // 这里可以添加触发后的处理逻辑
-          // currentNotes.Clear(); // 如果需要清除已触发的音符
+            foreach (Collider2D noteCollider in currentNotes)
+            {
+                Note note = noteCollider.GetComponent<Note>();
+                if (note != null)
+                {
+                    note.TriggerNote();
+                }
+            }
+            currentNotes.Clear();
+        }
+        else if (Input.GetKeyDown(targetKey) && currentNotes.Count == 0)
+        {
+            // 新增：当按下按键但没有可触发的音符时，视为连击中断
+            GameManager.Instance?.ResetMultiplier();
         }
     }
 
@@ -24,7 +34,7 @@ public class NoteChecker : MonoBehaviour
         if (collision.CompareTag("Note"))
         {
             currentNotes.Add(collision);
-           // Debug.Log("音符进入触发区域");
+            // Debug.Log("音符进入触发区域");
         }
     }
 
@@ -33,7 +43,7 @@ public class NoteChecker : MonoBehaviour
         if (collision.CompareTag("Note"))
         {
             currentNotes.Remove(collision);
-           // Debug.Log("音符离开触发区域");
+            // Debug.Log("音符离开触发区域");
         }
     }
 }
