@@ -19,6 +19,7 @@ public class DrumCollect : MonoBehaviour
 
     [SerializeField]private float _cooldown = 0.05f;
 
+    public float interval = 0.5f;
     public int CurrentTrackId=-1;
 
     public TrackTimerLists_Dic trackTimerLists_Dic;
@@ -67,7 +68,7 @@ public class DrumCollect : MonoBehaviour
         _cooldown-=Time.deltaTime;
         if(_cooldown <= 0)
         {
-            _cooldown = 0.05f;
+            _cooldown = interval;
             AddPointFromKeyCode(KeyCode.A);
             AddPointFromKeyCode(KeyCode.D);
             AddPointFromKeyCode(KeyCode.LeftArrow);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,16 +14,17 @@ public class NoteCreator : MonoBehaviour
     public TrackTimerLists_Dic trackTimerLists_Dic;
     public AudioSource bgm;
     public Slider bgmSlider;
-    public GameObject pointPre;
+    public GameObject[] notePrefabs; 
     public Transform notesparent;
 
     private List<PointGameObject> tempTrackList = new List<PointGameObject>();
 
     private void Start()
     {
-        if (pointPre.GetComponent<Note>() == null)
+        // 修改预制体验证逻辑
+        if (notePrefabs.Length == 0 || notePrefabs.Any(p => p.GetComponent<Note>() == null))
         {
-            Debug.LogError("音符预制体缺少NoteInfo组件！");
+            Debug.LogError("音符预制体配置错误！");
             return;
         }
         CreateNotes();
@@ -41,10 +43,14 @@ public class NoteCreator : MonoBehaviour
 
     private void AddPoint(int trackId, float currentTime)
     {
-        var noteObj = Instantiate(pointPre, notesparent);
+        // 添加随机选择逻辑
+        GameObject randomPrefab = notePrefabs[Random.Range(0, notePrefabs.Length)];
+        var noteObj = Instantiate(randomPrefab, notesparent);
+
+        // 原有位置设置保持不变...
         noteObj.transform.position = new Vector3(
             trackPositions[trackId],
-            0, // 初始Y位置设为0
+            0,
             0
         );
 

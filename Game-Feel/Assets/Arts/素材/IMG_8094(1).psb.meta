@@ -138,13 +138,13 @@ ScriptedImporter:
     spritePosition: {x: 214, y: 335}
   - name: "\u56FE\u5C42 5"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.3683342, y: 0.36052987}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 3
       width: 262
       height: 243
     spriteID: 2e90ef3baac14484db28c884d03acd7a

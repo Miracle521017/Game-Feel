@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1252,6 +1251,7 @@ MonoBehaviour:
   cut: {fileID: 914604693}
   left: 97
   right: 100
+  stopInput: 0
   leftAni: {fileID: 869626799}
   leftAni_1: {fileID: 821910618}
   rightAni: {fileID: 1246886071}
@@ -1882,6 +1882,7 @@ MonoBehaviour:
   cut: {fileID: 1467657630}
   left: 276
   right: 275
+  stopInput: 0
   leftAni: {fileID: 280216582}
   leftAni_1: {fileID: 852651864}
   rightAni: {fileID: 599755959}
@@ -2668,6 +2669,51 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2129876201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129876203}
+  - component: {fileID: 2129876202}
+  m_Layer: 0
+  m_Name: levelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2129876202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129876201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1734e895c6f46a4886775bc3b304ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: checkoutScene1
+--- !u!4 &2129876203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129876201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 774.04865, y: 598.6362, z: -6.5815635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &47405060925003831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9048,4 +9094,8 @@ SceneRoots:
   - {fileID: 16594825}
   - {fileID: 1944933801}
   - {fileID: 360500259}
+<<<<<<< HEAD
+  - {fileID: 2129876203}
+=======
   - {fileID: 8034816021962626201}
+>>>>>>> 4540878a9430fe710ec6558dfa412e3f1be60cc2

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private int score = 0;
+    [SerializeField] public int score = 0;
     [SerializeField] private float scoreMultiplier = 1f;
     [SerializeField] private int consecutiveNotes = 0;
     private const int MaxConsecutive = 10;

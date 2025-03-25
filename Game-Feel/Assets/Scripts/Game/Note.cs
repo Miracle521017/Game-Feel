@@ -9,6 +9,7 @@ public class Note : MonoBehaviour
     [SerializeField] private float timer;
     private NoteCreator noteCreator;
 
+
     public int TrackID => trackID;
     public float Timer => timer;
 
@@ -20,6 +21,7 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
+       
         noteCreator = FindObjectOfType<NoteCreator>();
         if (noteCreator == null)
             Debug.LogError("æ‰¾ä¸åˆ°NoteCreatorå®ä¾‹");
@@ -27,9 +29,10 @@ public class Note : MonoBehaviour
 
     public void TriggerNote()
     {
+
         // Ìí¼Ó¼Æ·ÖÂß¼­
         GameManager.Instance?.AddScore();
-
+       
         if (noteCreator != null)
             noteCreator.DeletePoint(gameObject);
         Destroy(gameObject);
