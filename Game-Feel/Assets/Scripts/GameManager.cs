@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     private const int MaxConsecutive = 10;
     private const float MaxMultiplier = 2f;
 
+    [SerializeField] private int totalNotes; // 总音符数（示例值）
+    [SerializeField] private int triggeredNotes = 0; // 成功触发的音符数
+
     // 新增：添加TextMeshPro组件引用
     [SerializeField] private TextMeshProUGUI scoreText;
 
@@ -33,10 +36,11 @@ public class GameManager : MonoBehaviour
         UpdateScoreDisplay();
     }
 
-    public void AddScore(int baseScore = 100)
+    public void AddScore(int baseScore = 10)
     {
         score += Mathf.RoundToInt(baseScore * scoreMultiplier);
         consecutiveNotes++;
+        triggeredNotes++; // 增加成功触发的音符数
 
         // 更新分数显示
         UpdateScoreDisplay();
@@ -71,7 +75,33 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreMultiplier = 1f;
         consecutiveNotes = 0;
+        triggeredNotes = 0;
         UpdateScoreDisplay(); // 重置分数显示
+    }
+
+    // 新增：计算星级
+    public void CalculateStars()
+    {
+        
+        float triggerRate = (float)triggeredNotes / totalNotes;
+
+        if (triggerRate >= 1f)
+        {
+            Debug.Log("三星！");
+        }
+        else if (triggerRate >= 0.8f)
+        {
+            Debug.Log("二星！");
+        }
+        else if (triggerRate >= 0.6f)
+        {
+            Debug.Log("一星！");
+        }
+        else
+        {
+            Debug.Log("失败");
+        }
+
     }
 
     // 新增：更新分数显示的方法

@@ -174,7 +174,7 @@ MonoBehaviour:
   - -2
   - 2.4
   - 5.6
-  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
+  trackTimerLists_Dic: {fileID: 11400000, guid: eb5293c4605fff1469268f02b2e5f078, type: 2}
   bgm: {fileID: 1506042696}
   bgmSlider: {fileID: 1752084123}
   pointPre: {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
@@ -194,6 +194,8 @@ MonoBehaviour:
   score: 0
   scoreMultiplier: 1
   consecutiveNotes: 0
+  totalNotes: 0
+  triggeredNotes: 0
   scoreText: {fileID: 1494798527}
 --- !u!1 &211006238
 GameObject:
@@ -1258,10 +1260,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5713c9c3ce84e1c4394c3fff1e5f01e7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cb2d6a5daf225174db742957c764956d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.98
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1906,10 +1908,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4d015e56e2569584ab080f205313a001, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cb2d6a5daf225174db742957c764956d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.82
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2153,7 +2155,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d485f6ffd61f45f4c934699865ac321c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 43650b38a00964c4abd43fe736952fc1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
