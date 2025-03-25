@@ -9,6 +9,7 @@ public class Note : MonoBehaviour
     [SerializeField] private float timer;
     private NoteCreator noteCreator;
 
+    public AudioSource audioSource;
 
     public int TrackID => trackID;
     public float Timer => timer;
@@ -21,7 +22,7 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-       
+        audioSource = GameObject.Find("水果音效").GetComponent<AudioSource>();
         noteCreator = FindObjectOfType<NoteCreator>();
         if (noteCreator == null)
             Debug.LogError("找不到NoteCreator实例");
@@ -29,10 +30,9 @@ public class Note : MonoBehaviour
 
     public void TriggerNote()
     {
-
         // 添加计分逻辑
         GameManager.Instance?.AddScore();
-       
+        audioSource.Play();
         if (noteCreator != null)
             noteCreator.DeletePoint(gameObject);
         Destroy(gameObject);

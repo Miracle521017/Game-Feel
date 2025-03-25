@@ -509,7 +509,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 43650b38a00964c4abd43fe736952fc1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d6156622e40e5dc4792fe49990141123, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   _cooldown: 0.1
   interval: 0.1
   CurrentTrackId: 0
-  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
+  trackTimerLists_Dic: {fileID: 11400000, guid: eb5293c4605fff1469268f02b2e5f078, type: 2}
   currentTrackCounts: 4
 --- !u!4 &1971425081
 Transform:
