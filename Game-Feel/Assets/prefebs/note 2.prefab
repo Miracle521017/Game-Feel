@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackID: 0
   timer: 0
+  audioSource: {fileID: 0}
 --- !u!95 &5658268752978556034
 Animator:
   serializedVersion: 5
