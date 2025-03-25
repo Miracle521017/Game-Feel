@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -197,7 +196,7 @@ MonoBehaviour:
   score: 0
   scoreMultiplier: 1
   consecutiveNotes: 0
-  totalNotes: 0
+  totalNotes: 50
   triggeredNotes: 0
   scoreText: {fileID: 1494798527}
 --- !u!1 &211006238
@@ -1252,6 +1251,7 @@ MonoBehaviour:
   cut: {fileID: 914604693}
   left: 97
   right: 100
+  stopInput: 0
   leftAni: {fileID: 869626799}
   leftAni_1: {fileID: 821910618}
   rightAni: {fileID: 1246886071}
@@ -1882,6 +1882,7 @@ MonoBehaviour:
   cut: {fileID: 1467657630}
   left: 276
   right: 275
+  stopInput: 0
   leftAni: {fileID: 280216582}
   leftAni_1: {fileID: 852651864}
   rightAni: {fileID: 599755959}
@@ -2473,6 +2474,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467657629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1687320725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687320727}
+  - component: {fileID: 1687320726}
+  m_Layer: 0
+  m_Name: levelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1687320726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687320725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1734e895c6f46a4886775bc3b304ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDuration: 30
+  levelToLoad: checkoutScene1
+--- !u!4 &1687320727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687320725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 951.9718, y: 472.2907, z: 5.233396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752084121
 GameObject:
@@ -9049,3 +9096,4 @@ SceneRoots:
   - {fileID: 1944933801}
   - {fileID: 360500259}
   - {fileID: 8034816021962626201}
+  - {fileID: 1687320727}

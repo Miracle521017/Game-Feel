@@ -22,6 +22,10 @@ public class MapPoint : MonoBehaviour
                     {
                         islocked = false;
                     }
+                    else
+                    {
+                        islocked = true;
+                    }
                 }
                 if(levelToCheck==levelToLoad)
                 {

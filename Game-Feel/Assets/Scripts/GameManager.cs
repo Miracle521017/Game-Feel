@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -13,19 +14,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int consecutiveNotes = 0;
     private const int MaxConsecutive = 10;
     private const float MaxMultiplier = 2f;
-
+    
     [SerializeField] private int totalNotes; // 总音符数（示例值）
     [SerializeField] private int triggeredNotes = 0; // 成功触发的音符数
 
     // 新增：添加TextMeshPro组件引用
     [SerializeField] private TextMeshProUGUI scoreText;
 
+   void Start()
+    {
+        
+    }
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
         else
         {
@@ -80,11 +86,11 @@ public class GameManager : MonoBehaviour
     }
 
     // 新增：计算星级
-    public void CalculateStars()
+    public float CalculateStars()
     {
         
         float triggerRate = (float)triggeredNotes / totalNotes;
-
+        return triggerRate;
         if (triggerRate >= 1f)
         {
             Debug.Log("三星！");
