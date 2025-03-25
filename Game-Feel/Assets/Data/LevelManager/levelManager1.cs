@@ -42,6 +42,8 @@ public class levelManager1 : MonoBehaviour
         //AudioManager.instance.PlayLevelVictory();
 
         yield return new WaitForSeconds(1.5f);
+        UIController1.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / UIController1.instance.fadeSpeed) + 3f);
         //关卡是否解锁判断
         if (GameManager.Instance.score > 60)
         {

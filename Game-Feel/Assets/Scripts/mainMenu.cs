@@ -18,12 +18,23 @@ public class mainMenu : MonoBehaviour
 
     public void startGame()
     {
+        StartCoroutine(LoadSceneAfterSound());
+    }
+    private IEnumerator LoadSceneAfterSound()
+    {
+        audioManager.instance.Playsounds();
+
+        // 等待额外的一秒
+        yield return new WaitForSeconds(1);
+
+        // 异步加载场景
         SceneManager.LoadScene(startScene);
     }
-
     public void QuitGame()
     {
+        audioManager.instance.Playsounds();
         Application.Quit();
+        
         Debug.Log("Quitting Game");
     }
 }
