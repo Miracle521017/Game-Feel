@@ -22,7 +22,7 @@ public class Note : MonoBehaviour
     {
         noteCreator = FindObjectOfType<NoteCreator>();
         if (noteCreator == null)
-            Debug.LogError("ÕÒ²»µ½NoteCreatorÊµÀı");
+            Debug.LogError("æ‰¾ä¸åˆ°NoteCreatorå®ä¾‹");
     }
 
     public void TriggerNote()
