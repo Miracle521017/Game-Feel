@@ -1428,9 +1428,10 @@ MonoBehaviour:
   pointPre: {fileID: 3862954239753551006, guid: b5e0789b39e5f044a820a65521042864, type: 3}
   bgm: {fileID: 645319784}
   bgmSlider: {fileID: 1594425463}
-  _cooldown: 0.05
+  _cooldown: 0.1
+  interval: 0.1
   CurrentTrackId: 0
-  trackTimerLists_Dic: {fileID: 11400000, guid: eb5293c4605fff1469268f02b2e5f078, type: 2}
+  trackTimerLists_Dic: {fileID: 11400000, guid: 50526c7b4a2973f49a19e92480a5b698, type: 2}
   currentTrackCounts: 4
 --- !u!4 &1971425081
 Transform:
