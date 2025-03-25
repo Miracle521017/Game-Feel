@@ -18,6 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: b6cb8e975bcf8254384837248dd5204a
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Level2.unity
     guid: e403d61b00ccf564598e1375a1dd27fd
+=======
+    path: Assets/Scenes/checkoutScene1.unity
+    guid: 51a3aad04de75aa49b03dfebf2d09a2b
+>>>>>>> 数据
   m_configObjects: {}
