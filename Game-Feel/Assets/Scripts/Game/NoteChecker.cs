@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class NoteChecker : MonoBehaviour
 {
+    [Header("画面效果")]
+    [SerializeField] private CameraShake cameraShake;
+
     public KeyCode targetKey = KeyCode.A;
 
     [SerializeField] private List<Collider2D> currentNotes = new List<Collider2D>();
 
-     private void Update()
+
+    private void Update()
     {
+        if (Input.GetKeyDown(targetKey))
+        {
+            cameraShake.Shake(0.1f, 0.2f); // 持续时间0.1秒，强度0.2
+        }
         if (Input.GetKeyDown(targetKey) && currentNotes.Count > 0)
         {
             foreach (Collider2D noteCollider in currentNotes)

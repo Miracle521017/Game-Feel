@@ -29,13 +29,7 @@ MonoBehaviour:
     timer: 5.503991
     gameObject: {fileID: 0}
   - trackId: 1
-    timer: 5.5679817
-    gameObject: {fileID: 0}
-  - trackId: 1
     timer: 6.0159864
-    gameObject: {fileID: 0}
-  - trackId: 1
-    timer: 6.0799775
     gameObject: {fileID: 0}
   - trackId: 2
     timer: 6.421315
@@ -43,23 +37,11 @@ MonoBehaviour:
   - trackId: 3
     timer: 6.86932
     gameObject: {fileID: 0}
-  - trackId: 3
-    timer: 6.933311
-    gameObject: {fileID: 0}
   - trackId: 0
     timer: 7.295986
     gameObject: {fileID: 0}
-  - trackId: 0
-    timer: 7.338662
-    gameObject: {fileID: 0}
-  - trackId: 2
-    timer: 7.743991
-    gameObject: {fileID: 0}
   - trackId: 1
     timer: 8.191996
-    gameObject: {fileID: 0}
-  - trackId: 1
-    timer: 8.255986
     gameObject: {fileID: 0}
   - trackId: 3
     timer: 8.661315
