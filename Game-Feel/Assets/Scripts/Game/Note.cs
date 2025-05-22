@@ -1,41 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class Note : MonoBehaviour
 {
     [SerializeField] private int trackID;
     [SerializeField] private float timer;
-    private NoteCreator noteCreator;
+    public NoteCreator noteCreator;
+    public MultiNote linkedMutiNote; // 新增关联的多轨道音符
+    public bool triggered;          // 触发状态标记
 
+    // 新增设置多轨道关联的方法
+    public void SetMutiNote(MultiNote multiNote)
+    {
+        linkedMutiNote = multiNote;
+    }
 
-    public int TrackID => trackID;
-    public float Timer => timer;
+    // 修改触发方法
+    public void TriggerNote()
+    {
+        triggered = true;
 
-    public void Initialize(int trackId, float timer)
+        // 如果是多轨道音符的一部分
+        if (linkedMutiNote != null)
+        {
+            if (linkedMutiNote.CheckAllTriggered())
+            {
+                linkedMutiNote.Trigger();
+            }
+        }
+        else // 普通音符逻辑
+        {
+            GameManager.Instance?.AddScore();
+            noteCreator?.DeletePoint(gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+    public virtual void Initialize(int trackId,float timer)
     {
         this.trackID = trackId;
         this.timer = timer;
     }
 
-    private void Start()
-    {
-       
-        noteCreator = FindObjectOfType<NoteCreator>();
-        if (noteCreator == null)
-            Debug.LogError("鎵句笉鍒癗oteCreator瀹炰緥");
-    }
-
-    public void TriggerNote()
-    {
-
-        // 添加计分逻辑
-        GameManager.Instance?.AddScore();
-       
-        if (noteCreator != null)
-            noteCreator.DeletePoint(gameObject);
-        Destroy(gameObject);
-       
-    }
 }
