@@ -69,12 +69,12 @@ public class levelManager1 : MonoBehaviour
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_score", GameManager.Instance.score);
         }*/
 
-        starRating = GameManager.Instance.CalculateStars();
+        //starRating = GameManager.Instance.CalculateStars();
         
-            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_starScore", starRating);
+        //    PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_starScore", starRating);
         
-        Debug.Log(starRating);
+        //Debug.Log(starRating);
 
-        SceneManager.LoadScene(levelToLoad);
+        //SceneManager.LoadScene(levelToLoad);
     }
 }
