@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Checker
   - Note
+  - Checker_Down
+  - Checker_Up
   layers:
   - Default
   - TransparentFX

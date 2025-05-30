@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
                 progressSlider.value = sliderValue;
             }
 
-            Debug.Log($"游戏时间：{gameTime:F2} 秒，Slider值：{sliderValue:F2}");
+           // Debug.Log($"游戏时间：{gameTime:F2} 秒，Slider值：{sliderValue:F2}");
         }
         else
         {
