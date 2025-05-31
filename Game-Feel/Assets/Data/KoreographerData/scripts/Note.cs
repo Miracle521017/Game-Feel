@@ -9,11 +9,14 @@ using UnityEngine.SceneManagement;
 public enum NoteType { ShellFood, RegularVeggie, Cookware, Yam }
 public enum MoveDirection { Down, Up }
 
+
+
+[System.Serializable]
 public class Note : MonoBehaviour
 {
     [Header("流速设置")]
     public NoteType noteType = NoteType.RegularVeggie;
-    public bool isDirectionChange = false;//是否会改变流动方向 f为向下 t为向上
+    public bool isDirectionChange = false; // 是否会改变流动方向 f为向下 t为向上
     public float moveSpeed = 5f;
     public float perfectTime = 0.5f;
     public float activeTime = 0.2f;
@@ -21,18 +24,19 @@ public class Note : MonoBehaviour
     [Header("Requirements")]
     public GloveState requiredGlove;
     public ToolType requiredTool;
-    public string LanesTag = "Checker_Down";//判定区域的标签
+    public string LanesTag = "Checker_Down"; // 判定区域的标签
 
-    //基础属性
+    // 基础属性
     public float spawnTime;
-    public bool isJudged = false;//是否被判定
-    public bool isActive = false;//是否处于判定区
+    public bool isJudged = false; // 是否被判定
+    public bool isActive = false; // 是否处于判定区
+    public int track; // 音符所在的轨道索引
 
-    //音效
+    // 音效
     public AudioSource noteAudioSource; // 音符的AudioSource组件
 
-    //音符流动效果
-    public float length = 7f;//总体纵向移动距离
+    // 音符流动效果
+    public float length = 7f; // 总体纵向移动距离
     private Vector3 startPos;
     private Vector3 endPos;
     private float journeyLength;
@@ -40,32 +44,40 @@ public class Note : MonoBehaviour
 
     void Start()
     {
-        //确定方向
+        // 确定方向
         SetDirection();
 
-        //根据音符类型设置需求
+        // 根据音符类型设置需求
         ConfigureRequirements();
 
-        //记录开始时间
+        // 记录开始时间
         startTime = Time.time;
     }
 
-
-
     void Update()
     {
-        //更新物体位置
+        // 更新物体位置
         if (!isJudged)
         {
             float distCovered = (Time.time - startTime) * moveSpeed;
             float fracJourney = distCovered / journeyLength;
 
             transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
-        }
 
+            // 检查是否到达终点
+            if (fracJourney >= 1.0f)
+            {
+                Debug.Log("Note reached the end, judged as MISS");
+                if (!isJudged)
+                {
+                    JudgementSystem_1.Instance.AutoJudgeMiss(this);
+                    Destroy(gameObject);
+                }
+            }
+        }
     }
 
-    //设置方向
+    // 设置方向
     public void SetDirection()
     {
         // 根据方向设置起始和结束位置
@@ -78,36 +90,36 @@ public class Note : MonoBehaviour
         {
             startPos = new Vector3(transform.position.x, transform.position.y - length, transform.position.z);
             endPos = transform.position;
-            transform.position = startPos;//从底部开始流动
+            transform.position = startPos; // 从底部开始流动
             LanesTag = "Checker_Up";
-            //TODO：可选：改变音符朝向
+            // TODO：可选：改变音符朝向
         }
-        //计算轨道长度，便于后续流动
+        // 计算轨道长度，便于后续流动
         journeyLength = Vector3.Distance(startPos, endPos);
     }
 
-    //进入判定区
+    // 进入判定区
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(LanesTag))
         {
-            Debug.Log("Entered the judge zone");
+            Debug.Log("音符进入轨道 " + track + " 的判定区域");
             isActive = true;
-            //TODO: 输入检测、判定
+           JudgementZone.Instance.RecordNote(this, track);
         }
     }
 
-    //离开判定区
+    // 离开判定区
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag(LanesTag))
         {
             isActive = false;
-            Debug.Log("Note reached the end, judged as MISS");
+            Debug.Log("音符离开轨道 " + track + " 的判定区域");
             if (!isJudged)
             {
-                Destroy(gameObject, 0.5f);//销毁物体
-                // TODO:MISS处理
+                JudgementSystem_1.Instance.AutoJudgeMiss(this);
+                Destroy(gameObject);
             }
         }
     }
