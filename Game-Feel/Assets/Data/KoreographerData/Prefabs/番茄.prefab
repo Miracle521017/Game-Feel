@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4015196092517199579}
   - component: {fileID: 2516354045751491986}
   - component: {fileID: 6041361211781064276}
+  - component: {fileID: 6926356723788047451}
   m_Layer: 0
   m_Name: "\u756A\u8304"
   m_TagString: Untagged
@@ -111,6 +112,7 @@ MonoBehaviour:
   spawnTime: 0
   isJudged: 0
   isActive: 0
+  track: 0
   noteAudioSource: {fileID: 6041361211781064276}
   length: 10
 --- !u!61 &4015196092517199579
@@ -281,3 +283,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6926356723788047451
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161207175420983002}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6cd52e1bc8edcc4e9a6c786fd3f8ae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

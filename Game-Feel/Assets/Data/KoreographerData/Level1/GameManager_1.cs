@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager_1 : MonoBehaviour
 {
     public static GameManager_1 Instance;
-
+    public Slider progressSlider;
     public int score;
     public int combo;
     public float gameTime;
     public float startTime;
     public float songLength;
+    public AudioSource musicSource;
 
     void Awake()
     {
@@ -32,25 +34,52 @@ public class GameManager_1 : MonoBehaviour
 
     void Update()
     {
-        gameTime = Time.time - startTime;
-    }
+        if (musicSource.isPlaying)
+        {
+            gameTime = Time.time - startTime;
+            float sliderValue = Mathf.Min(gameTime / songLength, 1f);
 
+            if (progressSlider != null)
+            {
+                progressSlider.value = sliderValue;
+            }
+
+            // Debug.Log($"游戏时间：{gameTime:F2} 秒，Slider值：{sliderValue:F2}");
+        }
+        else
+        {
+            if (progressSlider != null)
+            {
+                progressSlider.value = 1;
+                Debug.Log("音乐播放完毕，Slider值设为1");
+            }
+        }
+    }
+    
     public void StartGame()
     {
         score = 0;
         combo = 0;
         startTime = Time.time;
 
-        if (songLength > 0)
+        if (musicSource.clip != null)
         {
+            songLength = musicSource.clip.length;
             Debug.Log($"歌曲长度：{songLength} 秒");
         }
         else
         {
-            Debug.LogError("歌曲长度未设置！");
+            songLength = 0f;
+            Debug.LogError("AudioClip未设置！");
         }
 
-        Debug.Log("游戏开始！");
+        if (progressSlider != null)
+        {
+            progressSlider.value = 0;
+        }
+
+        musicSource.Play();
+        Debug.Log($"游戏开始！当前得分：{score}，Combo：{combo}");
     }
 
     public void AddScore(int points)
