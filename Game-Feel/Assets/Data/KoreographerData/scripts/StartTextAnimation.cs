@@ -10,10 +10,16 @@ public class StartTextAnimation : MonoBehaviour
     public float dilateValue = 0.1f; // 目标 dilate 值
     public Vector2 endPosition; // 自定义目标位置
 
+    public float jumpHeight = 10f; // 跳跃高度
+    public float jumpCycleDuration = 1f; // 跳跃周期（1秒）
+
+
     public Vector2 startPosition;
     private float initialDilate;
     private float timer;
     private bool isDilateComplete = false;
+    private bool isJumping = false;
+    private float jumpTimer;
 
     void Start()
     {
@@ -29,7 +35,7 @@ public class StartTextAnimation : MonoBehaviour
         initialDilate = -1.0f; // 初始 dilate 值
         titleText.fontMaterial.SetFloat("_FaceDilate", initialDilate);
 
-        endPosition=new Vector2(Screen.width-80f, Screen.height-40f);
+        endPosition = new Vector2(Screen.width - 80f, Screen.height - 40f);
     }
 
     void Update()
@@ -59,7 +65,26 @@ public class StartTextAnimation : MonoBehaviour
                 // 插值计算位置
                 Vector2 currentPosition = Vector2.Lerp(startPosition, endPosition, t);
                 titleText.transform.position = currentPosition;
+
+                // 检查是否到达目标位置
+                if (Vector2.Distance(titleText.transform.position, endPosition) < 0.1f)
+                {
+                    isJumping = true;
+                }
             }
         }
+
+        // 跳跃动画
+        if (isJumping)
+        {
+            jumpTimer += Time.deltaTime;
+            float jumpT = jumpTimer / jumpCycleDuration;
+
+            // 使用正弦函数计算跳跃位置
+            float yOffset = Mathf.Sin(jumpT * Mathf.PI * 2) * jumpHeight;
+            Vector2 jumpingPosition = new Vector2(endPosition.x, endPosition.y + yOffset);
+            titleText.transform.position = jumpingPosition;
+        }
+
     }
 }

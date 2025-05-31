@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public GloveState currentGlove = GloveState.BareHand; // 当前手套状态
     public ToolType currentTool = ToolType.None; // 当前使用的道具
 
+    private KeyCode leftKey;
+    private KeyCode rightKey;
     private KeyCode gloveKey; // 切换手套状态的按键
     private KeyCode[] toolKeys; // 切换道具的按键数组
     private KeyCode noneKey; // 取消道具的按键
@@ -23,6 +25,10 @@ public class PlayerController : MonoBehaviour
     public GameObject bareHandRight; // 右裸手模型
     public GameObject glovedHandLeft; // 左戴手套模型
     public GameObject glovedHandRight; // 右戴手套模型
+
+    [Header("动画组件")]
+    public Animator left;
+    public Animator right;
 
     void Start()
     {
@@ -46,12 +52,16 @@ public class PlayerController : MonoBehaviour
     {
         if (playerType == PlayerType.PlayerA)
         {
+            leftKey = KeyCode.A;
+            rightKey = KeyCode.D;
             gloveKey = KeyCode.LeftShift; // 玩家A的手套切换按键
             toolKeys = new KeyCode[] { KeyCode.H, KeyCode.J, KeyCode.K }; // 玩家A的道具选择按键
             noneKey = KeyCode.Space; // 玩家A的取消道具按键
         }
         else
         {
+            leftKey = KeyCode.LeftArrow;
+            rightKey = KeyCode.RightArrow;
             gloveKey = KeyCode.RightShift; // 玩家B的手套切换按键
             toolKeys = new KeyCode[] { KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3 }; // 玩家B的道具选择按键
             noneKey = KeyCode.Keypad0; // 玩家B的取消道具按键
@@ -109,26 +119,26 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("Checking input for player type: " + playerType);
         // 处理按键输入
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(leftKey))
         {
+            left.SetBool("Pressed", true);
             Debug.Log("PlayerA pressed A key for track 0");
             JudgementSystem_1.Instance.ProcessInput(this, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(rightKey))
         {
+            right.SetBool("Pressed", true);
             Debug.Log("PlayerA pressed D key for track 1");
             JudgementSystem_1.Instance.ProcessInput(this, 1);
         }
-       
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+
+        if (Input.GetKeyUp(leftKey))
         {
-            Debug.Log("PlayerB pressed Left Arrow key for track 2");
-            JudgementSystem_1.Instance.ProcessInput(this, 2);
+            left.SetBool("Pressed", false);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if(Input.GetKeyUp(rightKey))
         {
-            Debug.Log("PlayerB pressed Right Arrow key for track 3");
-            JudgementSystem_1.Instance.ProcessInput(this, 3);
+            right.SetBool("Pressed",false);
         }
     }
 }

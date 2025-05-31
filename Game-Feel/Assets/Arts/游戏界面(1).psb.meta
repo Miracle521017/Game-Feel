@@ -285,8 +285,8 @@ ScriptedImporter:
     spritePosition: {x: 780, y: 965}
   - name: "\u56FE\u5C42 51"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.31442305, y: 0.12891507}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -306,8 +306,8 @@ ScriptedImporter:
     spritePosition: {x: 439, y: 97}
   - name: "\u56FE\u5C42 51"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.6892611, y: 0.15377411}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -369,13 +369,13 @@ ScriptedImporter:
     spritePosition: {x: 815, y: 771}
   - name: "\u56FE\u5C42 50"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5991696, y: 0.2839304}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 3852
-      y: 2312
+      y: 2315
       width: 513
       height: 569
     spriteID: 109281ff435290749b0b1b1d315e0452
@@ -390,13 +390,13 @@ ScriptedImporter:
     spritePosition: {x: 1214, y: 102}
   - name: "\u56FE\u5C42 50"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.42029214, y: 0.24734148}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 3852
-      y: 2889
+      y: 2883
       width: 513
       height: 569
     spriteID: 6ba82ad2940437b45a28f1b1dc478abb
