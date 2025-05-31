@@ -46,19 +46,16 @@ public class JudgementSystem_1 : MonoBehaviour
             {
                 Debug.Log("PERFECT hit detected!");
                 GameManager_1.Instance.AddScore(perfectScore); // 增加PERFECT分数
-                ShowJudgementEffect("PERFECT!"); // 显示PERFECT效果
             }
             else if (timeDiff <= goodThreshold)
             {
                 Debug.Log("GOOD hit detected!");
                 GameManager_1.Instance.AddScore(goodScore); // 增加GOOD分数
-                ShowJudgementEffect("GOOD"); // 显示GOOD效果
             }
             else
             {
                 Debug.Log("MISS detected!");
                 GameManager_1.Instance.AddScore(missPenalty); // 增加MISS惩罚
-                ShowJudgementEffect("MISS"); // 显示MISS效果
                 GameManager_1.Instance.BreakCombo(); // 打断连击
             }
 
@@ -72,12 +69,10 @@ public class JudgementSystem_1 : MonoBehaviour
         }
     }
 
+    //自动判定miss
     public void AutoJudgeMiss(Note note)
     {
         Debug.Log($"Auto-judging MISS for note on track {note.track}");
-        //GameManager_1.Instance.AddScore(missPenalty); // 增加MISS惩罚
-        //GameManager_1.Instance.BreakCombo(); // 打断连击
-        ShowJudgementEffect("MISSl"); // 显示MISS效果
         note.isJudged = true; // 标记音符为已判定
         Destroy(note.gameObject); // 销毁音符对象
     }
@@ -88,21 +83,24 @@ public class JudgementSystem_1 : MonoBehaviour
         AutoJudgeMiss(note);
     }
 
-    void ShowJudgementEffect(string text)
-    {
-        Debug.Log($"Showing judgement effect: {text}");
-        // 实现视觉效果
-    }
 
     // 处理玩家输入，进行音符判定
     public void ProcessInput(PlayerController player, int trackIndex)
     {
-        //Debug.Log($"Processing input for player {player.playerType} on track {trackIndex}");
         Note note = JudgementZone.Instance.GetNote(trackIndex); // 获取当前轨道上的音符
         if (note != null)
         {
-            Debug.Log($"Found note on track {trackIndex}");
-            JudgeNote(trackIndex); // 判定音符
+            // 检查装备是否匹配
+            if (note.requiredGlove == player.currentGlove &&
+                note.requiredTool == player.currentTool)
+            {
+                JudgeNote(trackIndex);
+            }
+            else
+            {
+                Debug.Log($"Player {player.playerType} doesn't have required equipment for this note");
+                // 可以在这里添加错误的判定逻辑
+            }
         }
         else
         {

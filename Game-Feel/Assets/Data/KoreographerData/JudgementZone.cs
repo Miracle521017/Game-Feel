@@ -51,11 +51,7 @@ public class JudgementZone : MonoBehaviour
     {
         if (track >= 0 && track < TrackCount && notesToJudge[track].Count > 0)
         {
-            Note note = notesToJudge[track][0];
-            notesToJudge[track].Remove(note);
-            trackNotes[track].Remove(note); // 同步移除
-            Debug.Log($"Note  removed from track {track}.");
-            return note;
+            return notesToJudge[track][0];//返回第一个音符
         }
         return null;
     }
