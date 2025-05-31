@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackID: 0
   timer: 0
-  juiceBurst: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!95 &4018837573228126165
 Animator:
   serializedVersion: 5
