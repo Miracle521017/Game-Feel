@@ -207,8 +207,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36292372}
-  - component: {fileID: 36292375}
   - component: {fileID: 36292376}
+  - component: {fileID: 36292377}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -231,25 +231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &36292375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36292371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f1d7380c446274a80cce777c3c49de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressSlider: {fileID: 1874691886}
-  musicSource: {fileID: 37684580}
-  score: 0
-  combo: 0
-  gameTime: 0
-  startTime: 0
-  songLength: 4.39
 --- !u!114 &36292376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +248,23 @@ MonoBehaviour:
   perfectScore: 5
   goodScore: 2
   missPenalty: 0
+--- !u!114 &36292377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36292371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66be256bd464dd44a127d926d8bfd06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  combo: 0
+  gameTime: 0
+  startTime: 0
+  songLength: 0
 --- !u!1 &37684575
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +297,8 @@ Transform:
   m_LocalPosition: {x: -14.639829, y: -36.53803, z: -0.012907694}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 730214743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &37684578
@@ -982,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730214743}
   m_Layer: 0
-  m_Name: Lanes
+  m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,8 +995,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730214742}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.509524, y: 1.51, z: 0.081464164}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.130304, y: 38.048027, z: 0.094371855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1005,7 +1004,7 @@ Transform:
   - {fileID: 1452910379}
   - {fileID: 937705873}
   - {fileID: 633488617}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 37684577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783688137
 GameObject:
@@ -4637,4 +4636,3 @@ SceneRoots:
   - {fileID: 37684577}
   - {fileID: 36292372}
   - {fileID: 2064546381}
-  - {fileID: 730214743}

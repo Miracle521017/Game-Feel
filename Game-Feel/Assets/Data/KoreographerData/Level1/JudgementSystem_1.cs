@@ -34,28 +34,31 @@ public class JudgementSystem_1 : MonoBehaviour
         recentNote = note;
     }
 
-    // 判定音符，根据时间差给出评分
-    public void JudgeNote(PlayerController player,int track)
+//   判定音符，根据时间差给出评分
+    public void JudgeNote(int track)
     {
-
         if (recentNote != null && recentNote.track == track)
         {
             float timeDiff = Mathf.Abs(Time.time - recentNote.spawnTime);
+            Debug.Log($"Time difference: {timeDiff}, Track: {track}");
 
             if (timeDiff <= perfectThreshold)
             {
+                Debug.Log("PERFECT hit detected!");
                 GameManager_1.Instance.AddScore(perfectScore); // 增加PERFECT分数
-                ShowJudgementEffect("PERFECT!", player); // 显示PERFECT效果
+                ShowJudgementEffect("PERFECT!"); // 显示PERFECT效果
             }
             else if (timeDiff <= goodThreshold)
             {
+                Debug.Log("GOOD hit detected!");
                 GameManager_1.Instance.AddScore(goodScore); // 增加GOOD分数
-                ShowJudgementEffect("GOOD", player); // 显示GOOD效果
+                ShowJudgementEffect("GOOD"); // 显示GOOD效果
             }
             else
             {
+                Debug.Log("MISS detected!");
                 GameManager_1.Instance.AddScore(missPenalty); // 增加MISS惩罚
-                ShowJudgementEffect("MISS", player); // 显示MISS效果
+                ShowJudgementEffect("MISS"); // 显示MISS效果
                 GameManager_1.Instance.BreakCombo(); // 打断连击
             }
 
@@ -63,35 +66,47 @@ public class JudgementSystem_1 : MonoBehaviour
             Destroy(recentNote.gameObject); // 销毁音符对象
             recentNote = null; // 重置最近音符
         }
+        else
+        {
+            Debug.Log("No note to judge or note is on wrong track.");
+        }
     }
 
     public void AutoJudgeMiss(Note note)
     {
+        Debug.Log($"Auto-judging MISS for note on track {note.track}");
         //GameManager_1.Instance.AddScore(missPenalty); // 增加MISS惩罚
         //GameManager_1.Instance.BreakCombo(); // 打断连击
-        ShowJudgementEffect("MISS", null); // 显示MISS效果
+        ShowJudgementEffect("MISSl"); // 显示MISS效果
         note.isJudged = true; // 标记音符为已判定
         Destroy(note.gameObject); // 销毁音符对象
-        Debug.Log("Miss");
     }
 
     public void MissNote(Note note)
     {
+        Debug.Log($"Manually judging MISS for note on track {note.track}");
         AutoJudgeMiss(note);
     }
 
-    void ShowJudgementEffect(string text, PlayerController player)
+    void ShowJudgementEffect(string text)
     {
+        Debug.Log($"Showing judgement effect: {text}");
         // 实现视觉效果
     }
 
-     // 处理玩家输入，进行音符判定
+    // 处理玩家输入，进行音符判定
     public void ProcessInput(PlayerController player, int trackIndex)
     {
+        //Debug.Log($"Processing input for player {player.playerType} on track {trackIndex}");
         Note note = JudgementZone.Instance.GetNote(trackIndex); // 获取当前轨道上的音符
         if (note != null)
         {
-            JudgeNote(player, trackIndex); // 判定音符
+            Debug.Log($"Found note on track {trackIndex}");
+            JudgeNote(trackIndex); // 判定音符
+        }
+        else
+        {
+            Debug.Log($"No note found on track {trackIndex}");
         }
     }
 }

@@ -9,8 +9,6 @@ using UnityEngine.SceneManagement;
 public enum NoteType { ShellFood, RegularVeggie, Cookware, Yam }
 public enum MoveDirection { Down, Up }
 
-
-
 [System.Serializable]
 public class Note : MonoBehaviour
 {
@@ -74,6 +72,10 @@ public class Note : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 

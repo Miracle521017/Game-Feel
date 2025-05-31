@@ -10,7 +10,7 @@ public class JudgementZone : MonoBehaviour
     [Header("音符轨道列表")]
     public List<Note>[] trackNotes = new List<Note>[TrackCount]; // 轨道列表，每个轨道一个音符列表
 
-    private Dictionary<int, List<Note>> notesToJudge = new Dictionary<int, List<Note>>(); // 用于快速查找和管理
+    public Dictionary<int, List<Note>> notesToJudge = new Dictionary<int, List<Note>>(); // 用于快速查找和管理
     void Awake()
     {
         if (Instance == null)
@@ -32,7 +32,7 @@ public class JudgementZone : MonoBehaviour
             trackNotes[i] = new List<Note>();
             notesToJudge[i] = new List<Note>();
         }
-        Debug.Log($"JudgementZone initialized with {TrackCount} tracks.");
+        //Debug.Log($"JudgementZone initialized with {TrackCount} tracks.");
     }
 
     //记录音符入轨道列表

@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     void InputCheck()
     {
-        Debug.Log("Checking input for player type: " + playerType);
+        //Debug.Log("Checking input for player type: " + playerType);
         // 处理按键输入
         if (Input.GetKeyDown(KeyCode.A))
         {
