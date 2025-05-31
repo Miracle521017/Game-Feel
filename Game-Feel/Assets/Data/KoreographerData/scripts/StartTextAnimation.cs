@@ -35,7 +35,7 @@ public class StartTextAnimation : MonoBehaviour
         initialDilate = -1.0f; // ≥ı º dilate ÷µ
         titleText.fontMaterial.SetFloat("_FaceDilate", initialDilate);
 
-        endPosition = new Vector2(Screen.width - 80f, Screen.height - 40f);
+        endPosition = new Vector2(Screen.width /2+15, Screen.height - 40f);
     }
 
     void Update()
