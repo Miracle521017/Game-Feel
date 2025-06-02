@@ -22,13 +22,15 @@ public class Note : MonoBehaviour
     [Header("Requirements")]
     public GloveState requiredGlove;
     public ToolType requiredTool;
-    public string LanesTag = "Checker_Down"; // 判定区域的标签
+    public string targetTag = "Checker_Down"; // 判定区域的标签
 
     // 基础属性
     public float spawnTime;
     public bool isJudged = false; // 是否被判定
     public bool isActive = false; // 是否处于判定区
-    public int track; // 音符所在的轨道索引
+    public int track; // 音符所在的轨道索引（与对应的判定区域的索引一致,0123为下面四个轨道，4567为上面四个轨道,0145为p1控制的轨道，2367为p2控制的轨道）
+
+    public List<JudgementZone> judgementZones;//所有判定区域的物体列表
 
     // 音效
     public AudioSource noteAudioSource; // 音符的AudioSource组件
@@ -42,6 +44,13 @@ public class Note : MonoBehaviour
 
     void Start()
     {
+
+        if (track > 3)
+        {
+            isDirectionChange = true;
+            targetTag = "Checker_Up";
+        }
+
         // 确定方向
         SetDirection();
 
@@ -68,8 +77,8 @@ public class Note : MonoBehaviour
                 Debug.Log("Note reached the end, judged as MISS");
                 if (!isJudged)
                 {
-                    JudgementSystem_1.Instance.AutoJudgeMiss(this);
                     Destroy(gameObject);
+                    //Miss
                 }
             }
         }
@@ -93,7 +102,6 @@ public class Note : MonoBehaviour
             startPos = new Vector3(transform.position.x, transform.position.y - length, transform.position.z);
             endPos = transform.position;
             transform.position = startPos; // 从底部开始流动
-            LanesTag = "Checker_Up";
             // TODO：可选：改变音符朝向
         }
         // 计算轨道长度，便于后续流动
@@ -103,60 +111,46 @@ public class Note : MonoBehaviour
     // 进入判定区
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(LanesTag))
+        if (other.CompareTag(targetTag))
         {
-            Debug.Log("音符进入轨道 " + track + " 的判定区域");
             isActive = true;
-           JudgementZone.Instance.RecordNote(this, track);
         }
     }
 
     // 离开判定区
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(LanesTag))
+        if (other.CompareTag(targetTag))
         {
             isActive = false;
             Debug.Log("音符离开轨道 " + track + " 的判定区域");
             if (!isJudged)
             {
-                JudgementSystem_1.Instance.AutoJudgeMiss(this);
+               
                 Destroy(gameObject);
             }
         }
     }
 
     void ConfigureRequirements()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        switch (currentScene)
+    { 
+        switch (noteType)
         {
-            case "Level1":
-            case "Level2":
+            case NoteType.ShellFood:
+                requiredGlove = GloveState.BareHand;
+                requiredTool = ToolType.Brush;
+                break;
+            case NoteType.RegularVeggie:
                 requiredGlove = GloveState.BareHand;
                 requiredTool = ToolType.None;
                 break;
-            case "Level3":
-                switch (noteType)
-                {
-                    case NoteType.ShellFood:
-                        requiredGlove = GloveState.BareHand;
-                        requiredTool = ToolType.Brush;
-                        break;
-                    case NoteType.RegularVeggie:
-                        requiredGlove = GloveState.BareHand;
-                        requiredTool = ToolType.None;
-                        break;
-                    case NoteType.Cookware:
-                        requiredGlove = GloveState.Gloved;
-                        requiredTool = ToolType.Cloth;
-                        break;
-                    case NoteType.Yam:
-                        requiredGlove = GloveState.Gloved;
-                        requiredTool = ToolType.None;
-                        break;
-                }
+            case NoteType.Cookware:
+                requiredGlove = GloveState.Gloved;
+                requiredTool = ToolType.Cloth;
+                break;
+            case NoteType.Yam:
+                requiredGlove = GloveState.Gloved;
+                requiredTool = ToolType.None;
                 break;
         }
     }

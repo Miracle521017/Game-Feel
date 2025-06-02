@@ -6,6 +6,8 @@ public class JudgementSystem : MonoBehaviour
 {
     public static JudgementSystem Instance;
 
+    public bool isConditionCorrect=false;
+
     [Header("Timing Thresholds")]
     public float perfectThreshold = 0.05f;
     public float goodThreshold = 0.1f;
@@ -15,66 +17,38 @@ public class JudgementSystem : MonoBehaviour
     public int goodScore = 80;
     public int missPenalty = 0;
 
-    private Dictionary<int, Note> recentNotes = new Dictionary<int, Note>(); // 记录每个轨道上最近的音符
 
-    void Awake() => Instance = this;
 
-    public void RecordRecentNote(Note note, int trackIndex)
+    public void TriggerNote(Note note)
     {
-        recentNotes[trackIndex] = note;
-    }
+        CheckCondition(note);
 
-    public void JudgeNote(int trackIndex, PlayerController player)
-    {
-        if (recentNotes.TryGetValue(trackIndex, out Note note))
+        if (isConditionCorrect)
         {
-            float timeDiff = Mathf.Abs(Time.time - note.spawnTime);
-
-            bool conditionMet = note.requiredGlove == player.currentGlove &&
-                               note.requiredTool == player.currentTool;
-
-            if (conditionMet)
-            {
-                if (timeDiff <= perfectThreshold)
-                {
-                    GameManager.Instance.AddScore(perfectScore);
-                    ShowJudgementEffect("PERFECT!");
-                }
-                else if (timeDiff <= goodThreshold)
-                {
-                    GameManager.Instance.AddScore(goodScore);
-                    ShowJudgementEffect("GOOD");
-                }
-            }
-            else
-            {
-                GameManager.Instance.AddScore(missPenalty);
-                ShowJudgementEffect("MISS");
-                GameManager.Instance.BreakCombo();
-            }
-
             note.isJudged = true;
+            GameManager.Instance.AddScore(perfectScore);
             Destroy(note.gameObject);
-            recentNotes.Remove(trackIndex);
+            //待补充加分逻辑
+        }
+        else
+        {
+            Miss(note);
         }
     }
 
-    public void AutoJudgeMiss(Note note)
+    //Miss判定
+    public void Miss(Note note)
     {
-        GameManager.Instance.AddScore(missPenalty);
         GameManager.Instance.BreakCombo();
-        ShowJudgementEffect("MISS");
         note.isJudged = true;
         Destroy(note.gameObject);
     }
 
-    public void MissNote(Note note)
+    public void CheckCondition(Note note)
     {
-        AutoJudgeMiss(note);
-    }
+        if(note.track==0||note.track==1||note.track==5)
+        {
 
-    void ShowJudgementEffect(string text)
-    {
-        // 实现视觉效果
+        }
     }
 }

@@ -123,13 +123,11 @@ public class PlayerController : MonoBehaviour
         {
             left.SetBool("Pressed", true);
             Debug.Log("PlayerA pressed A key for track 0");
-            JudgementSystem_1.Instance.ProcessInput(this, 0);
         }
         else if (Input.GetKeyDown(rightKey))
         {
             right.SetBool("Pressed", true);
             Debug.Log("PlayerA pressed D key for track 1");
-            JudgementSystem_1.Instance.ProcessInput(this, 1);
         }
 
         if (Input.GetKeyUp(leftKey))
