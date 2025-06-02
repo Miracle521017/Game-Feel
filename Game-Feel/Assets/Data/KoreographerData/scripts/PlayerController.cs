@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameManager=GameObject.Find("Managers").GetComponent<GameManager_1>();
         playerState=PlayerState.Down;
         InitializeControls(); // 初始化控制按键
         UpdateHandVisuals(); // 更新手部视觉效果
@@ -53,11 +54,11 @@ public class PlayerController : MonoBehaviour
     {
 
         //检测玩家输入并检测是否需要切换轨道
-        HandleSwitchUpAndDown();
         InputCheck();
-        HandleGloveToggle(); // 处理手套切换
-        HandleToolSelection(); // 处理道具选择
-      
+        HandleSwitchUpAndDown();
+        //  HandleGloveToggle(); // 处理手套切换
+        // HandleToolSelection(); // 处理道具选择
+
 
     }
 
@@ -144,10 +145,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(leftKey))
         {
             left.SetBool("Pressed", true);
+            gameManager.judgementZones[leftIndex].Check();
         }
         else if (Input.GetKeyDown(rightKey))
         {
             right.SetBool("Pressed", true);
+            gameManager.judgementZones[rightIndex].Check();
         }
 
         //抬起

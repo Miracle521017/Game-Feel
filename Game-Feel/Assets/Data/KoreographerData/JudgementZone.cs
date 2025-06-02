@@ -38,10 +38,7 @@ public class JudgementZone : MonoBehaviour
 
     private void Update()
     {
-        //if (notesToJudge.Count>0)
-        //{
-        //    CheckInput();
-        //}
+
     }
 
     //记录音符入轨道列表
@@ -68,34 +65,35 @@ public class JudgementZone : MonoBehaviour
         return false;
     }
 
-    //public void CheckInput()
-    //{
-    //    Debug.Log("进行轨道" + judgementZoneIndex + "的输入测试");
-    //    if(Input.GetKeyDown(targetKey))
-    //    {
-    //        Debug.Log("按下对应按键！");
-    //        //TODO：进行音效和粒子效果补充
-    //        //触发音符
-    //        TriggerNote(notesToJudge[0]);
-    //    }
-    //}
-
-
+    public void Check()
+    {
+        if(notesToJudge.Count > 0)
+        {
+            TriggerNote(notesToJudge[0]);
+        }
+    }
     public void TriggerNote(Note note)
     {
         //CheckCondition(note);
-
-        if (isConditionCorrect)
+        if(notesToJudge.Count>0)
         {
-            Debug.Log("判定成功！");
-            note.isJudged = true;
-           // GameManager.Instance.AddScore();
-            Destroy(note.gameObject);
-            //待补充加分逻辑
+            if (isConditionCorrect)
+            {
+                Debug.Log(judgementZoneIndex+"轨道判定成功！");
+                note.isJudged = true;
+                // GameManager.Instance.AddScore();
+                Destroy(note.gameObject);
+                //待补充加分逻辑
+            }
+            else
+            {
+                Debug.Log(judgementZoneIndex + "轨道条件错误！");
+                Miss(note);
+            }
         }
         else
         {
-            Miss(note);
+            Debug.Log(judgementZoneIndex + "轨道无可判定音符！");
         }
     }
 
@@ -107,16 +105,5 @@ public class JudgementZone : MonoBehaviour
         Destroy(note.gameObject);
     }
 
-    public void CheckCondition(Note note)
-    {
-        //int player = 0;//用0和1标识玩家一和玩家二
-        //if (note.track == 0 || note.track == 1 || note.track == 4 || note.track == 5)
-        //{
-
-        //}
-        //else
-        //{
-        //    player = 1;
-        //}
-    }
+ 
 }
