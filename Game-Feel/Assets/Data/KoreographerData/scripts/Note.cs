@@ -35,6 +35,8 @@ public class Note : MonoBehaviour
     // 音效
     public AudioSource noteAudioSource; // 音符的AudioSource组件
 
+    public GameManager_1 gameManager;//当前关卡的游戏管理系统
+
     // 音符流动效果
     public float length = 7f; // 总体纵向移动距离
     private Vector3 startPos;
@@ -44,6 +46,10 @@ public class Note : MonoBehaviour
 
     void Start()
     {
+        if(gameManager == null)
+        {
+            gameManager = GameObject.Find("Managers").GetComponent<GameManager_1>();//初始化
+        }
 
         if (track > 3)
         {
@@ -111,8 +117,9 @@ public class Note : MonoBehaviour
     // 进入判定区
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(targetTag))
+        if (other.CompareTag(targetTag)&&!isActive)
         {
+            gameManager.judgementZones[track].RecordNote(this);
             isActive = true;
         }
     }
@@ -120,13 +127,13 @@ public class Note : MonoBehaviour
     // 离开判定区
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(targetTag))
+        if (other.CompareTag(targetTag)&&isActive)
         {
+            gameManager.judgementZones[track].RemoveNote(this);
             isActive = false;
-            Debug.Log("音符离开轨道 " + track + " 的判定区域");
+            //Debug.Log("音符离开轨道 " + track + " 的判定区域");
             if (!isJudged)
             {
-               
                 Destroy(gameObject);
             }
         }

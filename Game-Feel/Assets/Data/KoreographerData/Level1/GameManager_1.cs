@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager_1 : MonoBehaviour
 {
-    public static GameManager_1 Instance;
     public Slider progressSlider;
     public int score;
     public int combo;
@@ -14,20 +13,11 @@ public class GameManager_1 : MonoBehaviour
     public float songLength;
     public AudioSource musicSource;
 
-    public JudgementZone[] judgementZones; // 8个判定区域
+    public List<JudgementZone> judgementZones=new List<JudgementZone>(); // 8个判定区域
 
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     void Start()

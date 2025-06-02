@@ -38,17 +38,17 @@ public class JudgementZone : MonoBehaviour
 
     private void Update()
     {
-        if (notesToJudge.Count>0)
-        {
-            CheckInput();
-        }
+        //if (notesToJudge.Count>0)
+        //{
+        //    CheckInput();
+        //}
     }
 
     //记录音符入轨道列表
     public void RecordNote(Note note)
     {
         notesToJudge.Add(note);
-        Debug.Log("音符记录到轨道 " + judgementZoneIndex + " 的判定列表中");
+      // Debug.Log("音符记录到轨道 " + judgementZoneIndex + " 的判定列表中");
     }
 
     //移出音符的方法
@@ -57,7 +57,7 @@ public class JudgementZone : MonoBehaviour
         if ( notesToJudge.Contains(note))
         {
             notesToJudge.Remove(note);
-            Debug.Log($"Note ' removed from track {judgementZoneIndex}.");
+           // Debug.Log($"Note ' removed from track {judgementZoneIndex}.");
             return true;
         }
         else
@@ -68,20 +68,22 @@ public class JudgementZone : MonoBehaviour
         return false;
     }
 
-    public void CheckInput()
-    {
-        if(Input.GetKeyDown(targetKey))
-        {
-            //TODO：进行音效和粒子效果补充
-            //触发音符
-            TriggerNote(notesToJudge[0]);
-        }
-    }
+    //public void CheckInput()
+    //{
+    //    Debug.Log("进行轨道" + judgementZoneIndex + "的输入测试");
+    //    if(Input.GetKeyDown(targetKey))
+    //    {
+    //        Debug.Log("按下对应按键！");
+    //        //TODO：进行音效和粒子效果补充
+    //        //触发音符
+    //        TriggerNote(notesToJudge[0]);
+    //    }
+    //}
 
 
     public void TriggerNote(Note note)
     {
-        CheckCondition(note);
+        //CheckCondition(note);
 
         if (isConditionCorrect)
         {
@@ -107,14 +109,14 @@ public class JudgementZone : MonoBehaviour
 
     public void CheckCondition(Note note)
     {
-        int player = 0;//用0和1标识玩家一和玩家二
-        if (note.track == 0 || note.track == 1 || note.track == 4 || note.track == 5)
-        {
+        //int player = 0;//用0和1标识玩家一和玩家二
+        //if (note.track == 0 || note.track == 1 || note.track == 4 || note.track == 5)
+        //{
 
-        }
-        else
-        {
-            player = 1;
-        }
+        //}
+        //else
+        //{
+        //    player = 1;
+        //}
     }
 }
