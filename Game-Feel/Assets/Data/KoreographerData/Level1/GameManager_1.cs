@@ -14,6 +14,9 @@ public class GameManager_1 : MonoBehaviour
     public float songLength;
     public AudioSource musicSource;
 
+    public JudgementZone[] judgementZones; // 8¸öÅĞ¶¨ÇøÓò
+
+
     void Awake()
     {
         if (Instance == null)

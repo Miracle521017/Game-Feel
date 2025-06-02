@@ -265,11 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0643ca1e222bce34bac0cf8d13f4a26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perfectThreshold: 0.05
-  goodThreshold: 0.1
-  perfectScore: 5
-  goodScore: 2
-  missPenalty: 0
 --- !u!114 &36292377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +284,7 @@ MonoBehaviour:
   startTime: 0
   songLength: 0
   musicSource: {fileID: 37684580}
+  judgementZones: []
 --- !u!1 &37684575
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +482,7 @@ GameObject:
   - component: {fileID: 48658332}
   - component: {fileID: 48658334}
   - component: {fileID: 48658333}
+  - component: {fileID: 48658335}
   m_Layer: 0
   m_Name: "\u5DE6"
   m_TagString: Checker_Down
@@ -605,6 +602,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &48658335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48658331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac64b8bdd27015479f888aa45a9abe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  judgementZoneIndex: 0
+  targetKey: 97
+  isConditionCorrect: 1
+  notesToJudge: []
 --- !u!1 &342211136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1146,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2696800712795805833, guid: bcb0f685ec6fbf44f84e2586c0927ea5, type: 3}
+      propertyPath: m_TagString
+      value: Checker_Down
+      objectReference: {fileID: 0}
     - target: {fileID: 3574218915407735421, guid: bcb0f685ec6fbf44f84e2586c0927ea5, type: 3}
       propertyPath: m_Name
       value: P1
@@ -1606,6 +1623,7 @@ GameObject:
   - component: {fileID: 1327648115}
   - component: {fileID: 1327648117}
   - component: {fileID: 1327648116}
+  - component: {fileID: 1327648118}
   m_Layer: 0
   m_Name: "\u5DE6 (1)"
   m_TagString: Checker_Down
@@ -1725,6 +1743,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1327648118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327648114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac64b8bdd27015479f888aa45a9abe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  judgementZoneIndex: 2
+  targetKey: 97
+  isConditionCorrect: 1
+  notesToJudge: []
 --- !u!1 &1351647620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,9 +2295,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1615018991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac64b8bdd27015479f888aa45a9abe8, type: 3}
+  m_Script: {fileID: 11500000, guid: c213c27df52fecc448831fbbc50ccfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  judgementZones:
+  - {fileID: 48658335}
+  - {fileID: 1972763737}
+  - {fileID: 1327648118}
+  - {fileID: 1776260698}
 --- !u!1 &1631332812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,6 +2463,7 @@ GameObject:
   - component: {fileID: 1776260695}
   - component: {fileID: 1776260697}
   - component: {fileID: 1776260696}
+  - component: {fileID: 1776260698}
   m_Layer: 0
   m_Name: "\u53F3 (1)"
   m_TagString: Checker_Down
@@ -2543,6 +2583,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1776260698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776260694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac64b8bdd27015479f888aa45a9abe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  judgementZoneIndex: 3
+  targetKey: 97
+  isConditionCorrect: 1
+  notesToJudge: []
 --- !u!1 &1860537611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2860,7 @@ GameObject:
   - component: {fileID: 1972763734}
   - component: {fileID: 1972763736}
   - component: {fileID: 1972763735}
+  - component: {fileID: 1972763737}
   m_Layer: 0
   m_Name: "\u53F3"
   m_TagString: Checker_Down
@@ -2923,6 +2980,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1972763737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972763733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac64b8bdd27015479f888aa45a9abe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  judgementZoneIndex: 1
+  targetKey: 97
+  isConditionCorrect: 1
+  notesToJudge: []
 --- !u!1 &2064546378
 GameObject:
   m_ObjectHideFlags: 0
