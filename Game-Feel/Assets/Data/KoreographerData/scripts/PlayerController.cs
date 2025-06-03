@@ -145,12 +145,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(leftKey))
         {
             left.SetBool("Pressed", true);
-            gameManager.judgementZones[leftIndex].Check();
+            gameManager.judgementZones[leftIndex].Check(playerType);
         }
         else if (Input.GetKeyDown(rightKey))
         {
             right.SetBool("Pressed", true);
-            gameManager.judgementZones[rightIndex].Check();
+            gameManager.judgementZones[rightIndex].Check(playerType);
         }
 
         //Ì§Æð

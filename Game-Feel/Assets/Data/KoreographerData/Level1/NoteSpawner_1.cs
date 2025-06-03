@@ -12,7 +12,7 @@ public class NoteSpawner_1 : MonoBehaviour
     public List<GameObject> veggiePrefabs; // 仅蔬菜类音符预制体
 
     [Header("Lanes")]
-    public Transform[] lanes; // 四个轨道的位置
+    public Transform[] lanes; // 轨道的位置
 
     void Start()
     {
@@ -24,6 +24,7 @@ public class NoteSpawner_1 : MonoBehaviour
             int prefabIndex = Random.Range(0, veggiePrefabs.Count); // 随机选择蔬菜类音符预制体
 
             GameObject prefab = veggiePrefabs[prefabIndex];
+            prefab.GetComponent<Note>().track=laneIndex;//同步轨道
             Instantiate(prefab, lanes[laneIndex].position, Quaternion.identity, lanes[laneIndex]);
         }
 

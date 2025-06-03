@@ -5,12 +5,22 @@ using UnityEngine.UI;
 
 public class GameManager_1 : MonoBehaviour
 {
-    public Slider progressSlider;
-    public int score;
-    public int combo;
-    public float gameTime;
-    public float startTime;
-    public float songLength;
+    public static GameManager_1 Instance;
+
+    public Slider progressSlider;//游戏进度
+
+
+    public int score;//当局游戏总分
+    public int basicscore =100;//没有combo的基础的分
+    public int maxCombo=50;//最大连击数，超过后不再增加倍率
+
+    public float[] comboMultipliers = { 1.0f, 1.2f, 1.5f,2.0f};//不同连击区间的得分倍率
+    public int[] comboThresholds = { 10, 20, 30 };//不同倍率的连击边界
+    public int currentCombo = 0;//当前连击数目
+
+    public float gameTime;//游戏时间
+    public float startTime;//游戏开始时间
+    public float songLength;//歌曲长度
     public AudioSource musicSource;
 
     public List<JudgementZone> judgementZones=new List<JudgementZone>(); // 8个判定区域
@@ -18,6 +28,15 @@ public class GameManager_1 : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -44,7 +63,6 @@ public class GameManager_1 : MonoBehaviour
             if (progressSlider != null)
             {
                 progressSlider.value = 1;
-                Debug.Log("音乐播放完毕，Slider值设为1");
             }
         }
     }
@@ -52,7 +70,8 @@ public class GameManager_1 : MonoBehaviour
     public void StartGame()
     {
         score = 0;
-        combo = 0;
+        currentCombo = 0;
+
         startTime = Time.time;
 
         if (musicSource.clip != null)
@@ -75,21 +94,33 @@ public class GameManager_1 : MonoBehaviour
         Debug.Log($"游戏开始！当前得分：{score}，Combo：{combo}");
     }
 
-    public void AddScore(int points)
+    //得分
+    public void AddScore()
     {
-        score += points + (int)(combo * 0.2f);
-        combo = points > 0 ? combo + 1 : 0;
 
-        if (points > 0)
+        currentCombo++;//combo增加
+
+        float currentMultiplier = 1.0f;
+
+        if (currentCombo >= comboThresholds[comboThresholds.Length - 1])
         {
-            Debug.Log($"得分：{points} + {combo * 0.2f}（Combo 加成），当前总分：{score}，Combo：{combo}");
+            currentMultiplier = comboMultipliers[comboMultipliers.Length - 1];
         }
         else
         {
-            Debug.Log($"扣分：{points}，当前总分：{score}，Combo：{combo}");
+            for(int i = 0; i < comboThresholds.Length; i++)
+            {
+                if(currentCombo>= comboThresholds[i])
+                {
+                    currentMultiplier = comboMultipliers[i];
+                }
+            }
         }
+
+
     }
 
+    //不得分
     public void BreakCombo()
     {
         combo = 0;

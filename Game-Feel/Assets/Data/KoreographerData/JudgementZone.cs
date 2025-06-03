@@ -6,7 +6,9 @@ public class JudgementZone : MonoBehaviour
 {
     public int judgementZoneIndex = 0;//该轨道的索引值
     public KeyCode targetKey = KeyCode.A;//该轨道对应的按键
-    public bool isConditionCorrect = true;
+
+    public PlayerController P1;//玩家一对应的玩家控制脚本
+    public PlayerController P2;//玩家二对应的玩家控制脚本（便于判定）
 
     [Header("音符轨道列表")]
     public List<Note> notesToJudge = new List<Note>(); // 每个判定区域中现存的待检测音符列表
@@ -36,10 +38,6 @@ public class JudgementZone : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-    }
 
     //记录音符入轨道列表
     public void RecordNote(Note note)
@@ -65,19 +63,19 @@ public class JudgementZone : MonoBehaviour
         return false;
     }
 
-    public void Check()
+    public void Check(PlayerType playerType)
     {
         if(notesToJudge.Count > 0)
         {
-            TriggerNote(notesToJudge[0]);
+            TriggerNote(notesToJudge[0],playerType);
         }
     }
-    public void TriggerNote(Note note)
-    {
-        //CheckCondition(note);
+    public void TriggerNote(Note note,PlayerType playerType)
+    {   
         if(notesToJudge.Count>0)
         {
-            if (isConditionCorrect)
+            note.CheckCondition(playerType);//检测道具条件
+            if(note.isConditionCorrect)
             {
                 Debug.Log(judgementZoneIndex+"轨道判定成功！");
                 note.isJudged = true;
@@ -105,5 +103,4 @@ public class JudgementZone : MonoBehaviour
         Destroy(note.gameObject);
     }
 
- 
 }

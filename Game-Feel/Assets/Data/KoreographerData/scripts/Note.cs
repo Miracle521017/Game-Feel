@@ -44,6 +44,8 @@ public class Note : MonoBehaviour
     private float journeyLength;
     private float startTime;
 
+    public bool isConditionCorrect=false;//音符是否与当前玩家状态匹配
+
     void Start()
     {
         if(gameManager == null)
@@ -160,5 +162,10 @@ public class Note : MonoBehaviour
                 requiredTool = ToolType.None;
                 break;
         }
+    }
+
+    public void CheckCondition(PlayerType playerType)
+    {
+        //TODO:判断是否符合条件的逻辑
     }
 }
