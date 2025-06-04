@@ -79,7 +79,7 @@ public class JudgementZone : MonoBehaviour
             {
                 Debug.Log(judgementZoneIndex+"轨道判定成功！");
                 note.isJudged = true;
-                // GameManager.Instance.AddScore();
+                GameManager_1.Instance.AddScore();
                 Destroy(note.gameObject);
                 //待补充加分逻辑
             }
@@ -98,7 +98,7 @@ public class JudgementZone : MonoBehaviour
     //Miss判定
     public void Miss(Note note)
     {
-        GameManager.Instance.BreakCombo();
+        GameManager_1.Instance.BreakCombo();
         note.isJudged = true;
         Destroy(note.gameObject);
     }

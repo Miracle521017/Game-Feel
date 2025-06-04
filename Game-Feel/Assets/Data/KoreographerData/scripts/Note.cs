@@ -44,7 +44,7 @@ public class Note : MonoBehaviour
     private float journeyLength;
     private float startTime;
 
-    public bool isConditionCorrect=false;//音符是否与当前玩家状态匹配
+    public bool isConditionCorrect=true;//音符是否与当前玩家状态匹配
 
     void Start()
     {

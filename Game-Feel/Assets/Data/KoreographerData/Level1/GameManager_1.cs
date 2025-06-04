@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,8 @@ public class GameManager_1 : MonoBehaviour
 
     public Slider progressSlider;//游戏进度
 
-
     public int score;//当局游戏总分
-    public int basicscore =100;//没有combo的基础的分
+    public int basicScore =100;//没有combo的基础的分
     public int maxCombo=50;//最大连击数，超过后不再增加倍率
 
     public float[] comboMultipliers = { 1.0f, 1.2f, 1.5f,2.0f};//不同连击区间的得分倍率
@@ -25,6 +25,7 @@ public class GameManager_1 : MonoBehaviour
 
     public List<JudgementZone> judgementZones=new List<JudgementZone>(); // 8个判定区域
 
+    public TextMeshProUGUI scoreText;// 用于显示分数的TextMeshPro组件
 
     void Awake()
     {
@@ -65,6 +66,12 @@ public class GameManager_1 : MonoBehaviour
                 progressSlider.value = 1;
             }
         }
+
+        //更新分数显示
+        if(scoreText != null)
+        {
+            scoreText.text = $"Score:{score}";
+        }
     }
     
     public void StartGame()
@@ -91,7 +98,7 @@ public class GameManager_1 : MonoBehaviour
         }
 
         musicSource.Play();
-        Debug.Log($"游戏开始！当前得分：{score}，Combo：{combo}");
+        Debug.Log($"游戏开始！当前得分：{score}，Combo：{currentCombo}");
     }
 
     //得分
@@ -102,12 +109,14 @@ public class GameManager_1 : MonoBehaviour
 
         float currentMultiplier = 1.0f;
 
+        //如果超过最大阈值，不会再变得更大
         if (currentCombo >= comboThresholds[comboThresholds.Length - 1])
         {
             currentMultiplier = comboMultipliers[comboMultipliers.Length - 1];
         }
         else
         {
+            //否则 判断当前倍率
             for(int i = 0; i < comboThresholds.Length; i++)
             {
                 if(currentCombo>= comboThresholds[i])
@@ -117,13 +126,19 @@ public class GameManager_1 : MonoBehaviour
             }
         }
 
+        //计算得分并添加
+        int earnedScore = Mathf.RoundToInt(basicScore * currentMultiplier);
+        score += earnedScore;
+
+        Debug.Log($"连击: {currentCombo}, 得分: {earnedScore}, 总分: {score}, 倍率: {currentMultiplier}x");
+
 
     }
 
     //不得分
     public void BreakCombo()
     {
-        combo = 0;
+        currentCombo = 0;
         Debug.Log("Combo 被打破！");
     }
 }
