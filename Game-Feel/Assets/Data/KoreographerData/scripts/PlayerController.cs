@@ -33,21 +33,31 @@ public class PlayerController : MonoBehaviour
     public int rightIndex = 1;
 
     [Header("Hand Objects")]
-    public GameObject bareHandLeft; // 左裸手模型
-    public GameObject bareHandRight; // 右裸手模型
-    public GameObject glovedHandLeft; // 左戴手套模型
-    public GameObject glovedHandRight; // 右戴手套模型
+    // 下方轨道的手部模型
+    public GameObject bareHandLeftDown; // 左裸手模型(下方)
+    public GameObject bareHandRightDown; // 右裸手模型(下方)
+    public GameObject glovedHandLeftDown; // 左戴手套模型(下方)
+    public GameObject glovedHandRightDown; // 右戴手套模型(下方)
+
+    // 上方轨道的手部模型
+    public GameObject bareHandLeftUp; // 左裸手模型(上方)
+    public GameObject bareHandRightUp; // 右裸手模型(上方)
+    public GameObject glovedHandLeftUp; // 左戴手套模型(上方)
+    public GameObject glovedHandRightUp; // 右戴手套模型(上方)
+
 
     [Header("动画组件")]
-    public Animator left;
-    public Animator right;
+    public Animator leftDownAnimator; // 下方轨道左手动画
+    public Animator rightDownAnimator; // 下方轨道右手动画
+    public Animator leftUpAnimator; // 上方轨道左手动画
+    public Animator rightUpAnimator; // 上方轨道右手动画
 
     void Start()
     {
         gameManager=GameObject.Find("Managers").GetComponent<GameManager_1>();
         playerState=PlayerState.Down;
         InitializeControls(); // 初始化控制按键
-        UpdateHandVisuals(); // 更新手部视觉效果
+        UpdateAllVisuals(); // 更新手部视觉效果
     }
 
     void Update()
@@ -56,8 +66,8 @@ public class PlayerController : MonoBehaviour
         //检测玩家输入并检测是否需要切换轨道
         InputCheck();
         HandleSwitchUpAndDown();
-        //  HandleGloveToggle(); // 处理手套切换
-        // HandleToolSelection(); // 处理道具选择
+        HandleGloveToggle(); // 处理手套切换
+        HandleToolSelection(); // 处理道具选择
 
 
     }
@@ -98,6 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             currentGlove = currentGlove == GloveState.BareHand ?
                           GloveState.Gloved : GloveState.BareHand;
+            UpdateAllVisuals();
         }
     }
 
@@ -120,47 +131,100 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void UpdateAllVisuals()
+    {
+        UpdateHandVisuals();
+        UpdateAnimatorVisibility();
+    }
+
     // 更新手部视觉效果
     void UpdateHandVisuals()
     {
         // 确保所有手部对象都存在
-        if (bareHandLeft == null || bareHandRight == null ||
-            glovedHandLeft == null || glovedHandRight == null)
+        if (bareHandLeftDown == null || bareHandRightDown == null ||
+            glovedHandLeftDown == null || glovedHandRightDown == null ||
+            bareHandLeftUp == null || bareHandRightUp == null ||
+            glovedHandLeftUp == null || glovedHandRightUp == null)
         {
             Debug.LogError("Some hand objects are not assigned!");
             return;
         }
 
-        // 根据手套状态显示/隐藏对应的手部模型
-        bareHandLeft.SetActive(currentGlove == GloveState.BareHand);
-        bareHandRight.SetActive(currentGlove == GloveState.BareHand);
-        glovedHandLeft.SetActive(currentGlove == GloveState.Gloved);
-        glovedHandRight.SetActive(currentGlove == GloveState.Gloved);
+        // 根据手套状态和轨道位置显示/隐藏对应的手部模型
+        if (isDown)
+        {
+            // 下方轨道的手部模型
+            bareHandLeftDown.SetActive(currentGlove == GloveState.BareHand);
+            bareHandRightDown.SetActive(currentGlove == GloveState.BareHand);
+            glovedHandLeftDown.SetActive(currentGlove == GloveState.Gloved);
+            glovedHandRightDown.SetActive(currentGlove == GloveState.Gloved);
+
+            // 上方轨道的手部模型
+            bareHandLeftUp.SetActive(false);
+            bareHandRightUp.SetActive(false);
+            glovedHandLeftUp.SetActive(false);
+            glovedHandRightUp.SetActive(false);
+        }
+        else
+        {
+            // 下方轨道的手部模型
+            bareHandLeftDown.SetActive(false);
+            bareHandRightDown.SetActive(false);
+            glovedHandLeftDown.SetActive(false);
+            glovedHandRightDown.SetActive(false);
+
+            // 上方轨道的手部模型
+            bareHandLeftUp.SetActive(currentGlove == GloveState.BareHand);
+            bareHandRightUp.SetActive(currentGlove == GloveState.BareHand);
+            glovedHandLeftUp.SetActive(currentGlove == GloveState.Gloved);
+            glovedHandRightUp.SetActive(currentGlove == GloveState.Gloved);
+        }
+    }
+
+    // 更新动画器的可见性
+    void UpdateAnimatorVisibility()
+    {
+        if (isDown)
+        {
+            leftDownAnimator.gameObject.SetActive(true);
+            rightDownAnimator.gameObject.SetActive(true);
+            leftUpAnimator.gameObject.SetActive(false);
+            rightUpAnimator.gameObject.SetActive(false);
+        }
+        else
+        {
+            leftDownAnimator.gameObject.SetActive(false);
+            rightDownAnimator.gameObject.SetActive(false);
+            leftUpAnimator.gameObject.SetActive(true);
+            rightUpAnimator.gameObject.SetActive(true);
+        }
     }
 
     void InputCheck()
     {
-        //Debug.Log("Checking input for player type: " + playerType);
+        Animator currentLeftAnimator = isDown ? leftDownAnimator : leftUpAnimator;
+        Animator currentRightAnimator = isDown ? rightDownAnimator : rightUpAnimator;
+
         // 处理按键输入
         if (Input.GetKeyDown(leftKey))
         {
-            left.SetBool("Pressed", true);
+            currentLeftAnimator.SetBool("Pressed", true);
             gameManager.judgementZones[leftIndex].Check(playerType);
         }
         else if (Input.GetKeyDown(rightKey))
         {
-            right.SetBool("Pressed", true);
+            currentRightAnimator.SetBool("Pressed", true);
             gameManager.judgementZones[rightIndex].Check(playerType);
         }
 
-        //抬起
+        // 抬起
         if (Input.GetKeyUp(leftKey))
         {
-            left.SetBool("Pressed", false);
+            currentLeftAnimator.SetBool("Pressed", false);
         }
-        else if(Input.GetKeyUp(rightKey))
+        else if (Input.GetKeyUp(rightKey))
         {
-            right.SetBool("Pressed",false);
+            currentRightAnimator.SetBool("Pressed", false);
         }
     }
 
@@ -171,6 +235,7 @@ public class PlayerController : MonoBehaviour
             if (playerState == PlayerState.Down)
             {
                 playerState = PlayerState.Up;
+                isDown = false;
                 //切换到上方
                 if (playerType == PlayerType.PlayerA)
                 {
@@ -184,7 +249,8 @@ public class PlayerController : MonoBehaviour
                     leftIndex=6; 
                     rightIndex=7;
                     //同上
-                }  
+                }
+                UpdateAllVisuals();
             }
         }
         else if (Input.GetKeyDown(downKey))
@@ -192,6 +258,7 @@ public class PlayerController : MonoBehaviour
             if (playerState == PlayerState.Up)
             {
                 playerState = PlayerState.Down;
+                isDown = true;
                 //切换到上方
                 if (playerType == PlayerType.PlayerA)
                 {
@@ -206,6 +273,7 @@ public class PlayerController : MonoBehaviour
                     rightIndex = 3;
                     //同上
                 }
+                UpdateAllVisuals();
             }
         }
     }
