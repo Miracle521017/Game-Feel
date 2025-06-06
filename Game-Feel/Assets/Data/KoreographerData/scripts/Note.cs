@@ -32,10 +32,14 @@ public class Note : MonoBehaviour
 
     public List<JudgementZone> judgementZones;//所有判定区域的物体列表
 
+    public int playerIndex=0;//当前音符所属于的玩家,0为P1，1为p2
+
     // 音效
     public AudioSource noteAudioSource; // 音符的AudioSource组件
 
     public GameManager_1 gameManager;//当前关卡的游戏管理系统
+
+    public List<PlayerController> playerControllers= new List<PlayerController>();//当前局内所有玩家的控制脚本 以双人游戏为例 0为P1，1为P2
 
     // 音符流动效果
     public float length = 7f; // 总体纵向移动距离
@@ -61,6 +65,9 @@ public class Note : MonoBehaviour
 
         // 确定方向
         SetDirection();
+
+        //设置音符所属玩家
+        CheckPlayer();
 
         // 根据音符类型设置需求
         ConfigureRequirements();
@@ -164,8 +171,39 @@ public class Note : MonoBehaviour
         }
     }
 
-    public void CheckCondition(PlayerType playerType)
+    //检测音符对应的玩家
+    public void CheckPlayer()
     {
-        //TODO:判断是否符合条件的逻辑
+        if(track==0||track==1||track == 4 || track == 5)
+        {
+            playerIndex = 0;
+        }
+        else
+        {
+            playerIndex = 1;
+        }
+    }
+
+    //检测音符触发的条件是否正确
+    public void CheckCondition()
+    {
+        if (playerControllers.Count >= 2)
+        {
+            if (playerControllers[playerIndex].currentTool == requiredTool && playerControllers[playerIndex].currentGlove==requiredGlove)
+            {
+                Debug.Log("道具对应正确！");
+                isConditionCorrect = true;
+            }
+            else
+            {
+                Debug.Log("道具对应错误！");
+                isConditionCorrect= false;
+            }
+        }
+        else
+        {
+            Debug.Log("初始化不正确！");
+        }
+        
     }
 }

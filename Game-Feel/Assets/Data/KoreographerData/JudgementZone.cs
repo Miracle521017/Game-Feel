@@ -67,14 +67,14 @@ public class JudgementZone : MonoBehaviour
     {
         if(notesToJudge.Count > 0)
         {
-            TriggerNote(notesToJudge[0],playerType);
+            TriggerNote(notesToJudge[0]);
         }
     }
-    public void TriggerNote(Note note,PlayerType playerType)
+    public void TriggerNote(Note note)
     {   
         if(notesToJudge.Count>0)
         {
-            note.CheckCondition(playerType);//检测道具条件
+            note.CheckCondition();//检测道具条件
             if(note.isConditionCorrect)
             {
                 Debug.Log(judgementZoneIndex+"轨道判定成功！");
