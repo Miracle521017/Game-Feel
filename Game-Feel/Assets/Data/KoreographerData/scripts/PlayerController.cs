@@ -45,18 +45,40 @@ public class PlayerController : MonoBehaviour
     public GameObject glovedHandLeftUp; // 左戴手套模型(上方)
     public GameObject glovedHandRightUp; // 右戴手套模型(上方)
 
-
     [Header("动画组件")]
-    public Animator leftDownAnimator; // 下方轨道左手动画
-    public Animator rightDownAnimator; // 下方轨道右手动画
-    public Animator leftUpAnimator; // 上方轨道左手动画
-    public Animator rightUpAnimator; // 上方轨道右手动画
+    public Animator bareLeftDownAnimator; // 下方轨道左手裸手动画
+    public Animator bareRightDownAnimator; // 下方轨道右手裸手动画
+    public Animator glovedLeftDownAnimator; // 下方轨道左手戴手套动画
+    public Animator glovedRightDownAnimator; // 下方轨道右手戴手套动画
+    public Animator bareLeftUpAnimator; // 上方轨道左手裸手动画
+    public Animator bareRightUpAnimator; // 上方轨道右手裸手动画
+    public Animator glovedLeftUpAnimator; // 上方轨道左手戴手套动画
+    public Animator glovedRightUpAnimator; // 上方轨道右手戴手套动画
+
+    private Animator currentLeftAnimator;
+    private Animator currentRightAnimator;
 
     void Start()
     {
         gameManager=GameObject.Find("Managers").GetComponent<GameManager_1>();
         playerState=PlayerState.Down;
         InitializeControls(); // 初始化控制按键
+
+        // 初始化动画机引用
+        if (isDown)
+        {
+            if (currentGlove == GloveState.BareHand)
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftDownAnimator : bareLeftUpAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightDownAnimator : bareRightUpAnimator;
+            }
+            else
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftDownAnimator : glovedLeftUpAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightDownAnimator : glovedRightUpAnimator;
+            }
+        }
+
         UpdateAllVisuals(); // 更新手部视觉效果
     }
 
@@ -134,7 +156,7 @@ public class PlayerController : MonoBehaviour
     void UpdateAllVisuals()
     {
         UpdateHandVisuals();
-        UpdateAnimatorVisibility();
+        UpdateAnimator();
     }
 
     // 更新手部视觉效果
@@ -182,29 +204,75 @@ public class PlayerController : MonoBehaviour
     }
 
     // 更新动画器的可见性
-    void UpdateAnimatorVisibility()
+    void UpdateAnimator()
     {
         if (isDown)
         {
-            leftDownAnimator.gameObject.SetActive(true);
-            rightDownAnimator.gameObject.SetActive(true);
-            leftUpAnimator.gameObject.SetActive(false);
-            rightUpAnimator.gameObject.SetActive(false);
+            if (currentGlove == GloveState.BareHand)
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftDownAnimator : bareLeftUpAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightDownAnimator : bareRightUpAnimator;
+            }
+            else
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftDownAnimator : glovedLeftUpAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightDownAnimator : glovedRightUpAnimator;
+            }
         }
         else
         {
-            leftDownAnimator.gameObject.SetActive(false);
-            rightDownAnimator.gameObject.SetActive(false);
-            leftUpAnimator.gameObject.SetActive(true);
-            rightUpAnimator.gameObject.SetActive(true);
+            if (currentGlove == GloveState.BareHand)
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftUpAnimator : bareLeftDownAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightUpAnimator : bareRightDownAnimator;
+            }
+            else
+            {
+                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftUpAnimator : glovedLeftDownAnimator;
+                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightUpAnimator : glovedRightDownAnimator;
+            }
+        }
+
+        // 确保动画器可见性
+        bareLeftDownAnimator.gameObject.SetActive(false);
+        bareRightDownAnimator.gameObject.SetActive(false);
+        glovedLeftDownAnimator.gameObject.SetActive(false);
+        glovedRightDownAnimator.gameObject.SetActive(false);
+        bareLeftUpAnimator.gameObject.SetActive(false);
+        bareRightUpAnimator.gameObject.SetActive(false);
+        glovedLeftUpAnimator.gameObject.SetActive(false);
+        glovedRightUpAnimator.gameObject.SetActive(false);
+
+        if (isDown)
+        {
+            if (currentGlove == GloveState.BareHand)
+            {
+                bareLeftDownAnimator.gameObject.SetActive(true);
+                bareRightDownAnimator.gameObject.SetActive(true);
+            }
+            else
+            {
+                glovedLeftDownAnimator.gameObject.SetActive(true);
+                glovedRightDownAnimator.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (currentGlove == GloveState.BareHand)
+            {
+                bareLeftUpAnimator.gameObject.SetActive(true);
+                bareRightUpAnimator.gameObject.SetActive(true);
+            }
+            else
+            {
+                glovedLeftUpAnimator.gameObject.SetActive(true);
+                glovedRightUpAnimator.gameObject.SetActive(true);
+            }
         }
     }
 
     void InputCheck()
     {
-        Animator currentLeftAnimator = isDown ? leftDownAnimator : leftUpAnimator;
-        Animator currentRightAnimator = isDown ? rightDownAnimator : rightUpAnimator;
-
         // 处理按键输入
         if (Input.GetKeyDown(leftKey))
         {

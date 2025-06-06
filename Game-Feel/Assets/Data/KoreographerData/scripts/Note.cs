@@ -39,7 +39,7 @@ public class Note : MonoBehaviour
 
     public GameManager_1 gameManager;//当前关卡的游戏管理系统
 
-    public List<PlayerController> playerControllers= new List<PlayerController>();//当前局内所有玩家的控制脚本 以双人游戏为例 0为P1，1为P2
+    public List<PlayerController> playerControllers;//当前局内所有玩家的控制脚本 以双人游戏为例 0为P1，1为P2
 
     // 音符流动效果
     public float length = 7f; // 总体纵向移动距离
@@ -52,7 +52,9 @@ public class Note : MonoBehaviour
 
     void Start()
     {
-        if(gameManager == null)
+
+        InitializeControllers();
+        if (gameManager == null)
         {
             gameManager = GameObject.Find("Managers").GetComponent<GameManager_1>();//初始化
         }
@@ -78,6 +80,8 @@ public class Note : MonoBehaviour
 
     void Update()
     {
+        //CheckCondition();//检测道具状态
+
         // 更新物体位置
         if (!isJudged)
         {
@@ -103,8 +107,21 @@ public class Note : MonoBehaviour
         }
     }
 
-    // 设置方向
-    public void SetDirection()
+    //初始化控制列表
+    void InitializeControllers()
+    {
+        // 清空列表
+        playerControllers.Clear();
+
+        // 添加玩家控制器
+        GameObject p1 = GameObject.Find("P1");
+        GameObject p2 = GameObject.Find("P2");
+
+        if (p1 != null) playerControllers.Add(p1.GetComponent<PlayerController>());
+        if (p2 != null) playerControllers.Add(p2.GetComponent<PlayerController>());
+    }
+// 设置方向
+public void SetDirection()
     {
         // 根据方向设置起始和结束位置
         if (!isDirectionChange)
@@ -187,7 +204,7 @@ public class Note : MonoBehaviour
     //检测音符触发的条件是否正确
     public void CheckCondition()
     {
-        if (playerControllers.Count >= 2)
+        if (playerControllers.Count <= 2)
         {
             if (playerControllers[playerIndex].currentTool == requiredTool && playerControllers[playerIndex].currentGlove==requiredGlove)
             {

@@ -190,10 +190,15 @@ MonoBehaviour:
   activeTime: 0.2
   requiredGlove: 0
   requiredTool: 0
-  LanesTag: Checker_Down
+  targetTag: Checker_Down
   spawnTime: 0
   isJudged: 0
   isActive: 0
   track: 0
+  judgementZones: []
+  playerIndex: 0
   noteAudioSource: {fileID: 0}
+  gameManager: {fileID: 0}
+  playerControllers: []
   length: 7
+  isConditionCorrect: 1

@@ -108,13 +108,18 @@ MonoBehaviour:
   activeTime: 0.2
   requiredGlove: 0
   requiredTool: 0
-  LanesTag: Checker_Down
+  targetTag: Checker_Down
   spawnTime: 0
   isJudged: 0
   isActive: 0
   track: 0
+  judgementZones: []
+  playerIndex: 0
   noteAudioSource: {fileID: 6041361211781064276}
+  gameManager: {fileID: 0}
+  playerControllers: []
   length: 10
+  isConditionCorrect: 1
 --- !u!61 &4015196092517199579
 BoxCollider2D:
   m_ObjectHideFlags: 0
