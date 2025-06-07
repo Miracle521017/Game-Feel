@@ -463,14 +463,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc6cc6f813451542b214e1dbcb17d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: NoteTrack
-  veggiePrefabs:
-  - {fileID: 3161207175420983002, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
-  - {fileID: 3161207175420983002, guid: 12d9f09a738d67a42b5c99dd4dd0ecdb, type: 3}
-  - {fileID: 3862954239753551006, guid: b5e0789b39e5f044a820a65521042864, type: 3}
-  - {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
-  - {fileID: 3862954239753551006, guid: 42a1379bf717c014c804baec40eda022, type: 3}
-  - {fileID: 3862954239753551006, guid: 524e8cb782f0dd944ae699bc18aafbe2, type: 3}
+  noteTypeEventID: NoteTrack
+  laneEventID: NoteTrack
+  shellFoodPrefabs: []
+  regularVeggiePrefabs: []
+  cookwarePrefabs: []
+  yamPrefabs: []
+  cupPrefabs: []
   lanes:
   - {fileID: 6865684608860170764}
   - {fileID: 1452910379}
@@ -1046,7 +1045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161207175420983002, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4494669642066352689, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: track
@@ -2118,7 +2117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161207175420983002, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4494669642066352689, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: track
@@ -3488,7 +3487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161207175420983002, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4494669642066352689, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
       propertyPath: track

@@ -6,9 +6,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public enum NoteType { ShellFood, RegularVeggie, Cookware, Yam }
-//海鲜类：需要刷子 普通果蔬类：无任何要求 厨具类：需要用抹布 山药类：需要戴手套 （杯子类：需要专门的杯刷）
-//颜色对应：黑 红 灰 棕 白
+public enum NoteType { ShellFood, RegularVeggie, Cookware, Yam ,Cup}
+//海鲜类：需要刷子 普通果蔬类：无任何要求 厨具类：需要用抹布 山药类：需要戴手套 （杯子类：需要专门的杯刷） 0-4对应（浮点值）
 public enum MoveDirection { Down, Up }
 
 [System.Serializable]
@@ -98,8 +97,8 @@ public class Note : MonoBehaviour
                 Debug.Log("Note reached the end, judged as MISS");
                 if (!isJudged)
                 {
+                    gameManager.BreakCombo();
                     Destroy(gameObject);
-                    //Miss
                 }
             }
         }
@@ -187,6 +186,10 @@ public void SetDirection()
                 requiredGlove = GloveState.Gloved;
                 requiredTool = ToolType.None;
                 break;
+            case NoteType.Cup:
+                requiredGlove = GloveState.Gloved;
+                requiredTool = ToolType.CupBrush;
+                break;
         }
     }
 
@@ -206,7 +209,7 @@ public void SetDirection()
     //检测音符触发的条件是否正确
     public void CheckCondition()
     {
-        if (playerControllers.Count <= 2)
+        if (playerControllers.Count ==2)
         {
             if (playerControllers[playerIndex].currentTool == requiredTool && playerControllers[playerIndex].currentGlove==requiredGlove)
             {
@@ -225,4 +228,32 @@ public void SetDirection()
         }
         
     }
+
+    // 根据颜色设置音符类型
+    public void SetNoteTypeByFloat(float type)
+    {
+        switch (type)
+        {
+            case 0:
+                noteType = NoteType.ShellFood;
+                break;
+            case 1:
+                noteType = NoteType.RegularVeggie;
+                break;
+            case 2:
+                noteType = NoteType.Cookware;
+                break;
+            case 3:
+                noteType = NoteType.Yam;
+                break;
+            case 4:
+                noteType = NoteType.Cup;
+                break;
+            default:
+                noteType = NoteType.RegularVeggie;
+                break;
+        }
+        ConfigureRequirements(); // 更新需求
+    }
+
 }
