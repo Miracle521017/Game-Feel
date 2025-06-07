@@ -18,13 +18,13 @@ public class PlayerController : MonoBehaviour
     public ToolType currentTool = ToolType.None; // 当前使用的道具
     public PlayerState playerState;//当前玩家状态
 
-    private KeyCode leftKey;
-    private KeyCode rightKey;
-    private KeyCode upKey;
-    private KeyCode downKey;
-    private KeyCode gloveKey; // 切换手套状态的按键
-    private KeyCode[] toolKeys; // 切换道具的按键数组
-    private KeyCode noneKey; // 取消道具的按键
+   [SerializeField] private KeyCode leftKey;
+    [SerializeField] private KeyCode rightKey;
+    [SerializeField] private KeyCode upKey;
+    [SerializeField] private KeyCode downKey;
+    [SerializeField] private KeyCode gloveKey; // 切换手套状态的按键
+    [SerializeField] private KeyCode[] toolKeys; // 切换道具的按键数组
+    [SerializeField] private KeyCode noneKey; // 取消道具的按键
 
     public bool isDown=true;//标识玩家所在轨道方向（true使用下面的轨道 false则为上面的轨道）
 
@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
     public Animator glovedLeftUpAnimator; // 上方轨道左手戴手套动画
     public Animator glovedRightUpAnimator; // 上方轨道右手戴手套动画
 
-    private Animator currentLeftAnimator;
-    private Animator currentRightAnimator;
+   [SerializeField] private Animator currentLeftAnimator;
+   [SerializeField] private Animator currentRightAnimator;
 
     void Start()
     {
@@ -69,13 +69,13 @@ public class PlayerController : MonoBehaviour
         {
             if (currentGlove == GloveState.BareHand)
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftDownAnimator : bareLeftUpAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightDownAnimator : bareRightUpAnimator;
+                currentLeftAnimator =  bareLeftDownAnimator;
+                currentRightAnimator = bareRightDownAnimator;
             }
             else
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftDownAnimator : glovedLeftUpAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightDownAnimator : glovedRightUpAnimator;
+                currentLeftAnimator = glovedLeftDownAnimator ;
+                currentRightAnimator = glovedRightDownAnimator ;
             }
         }
 
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             toolKeys = new KeyCode[] { KeyCode.H, KeyCode.J, KeyCode.K }; // 玩家A的道具选择按键
             noneKey = KeyCode.Space; // 玩家A的取消道具按键
         }
-        else
+        else if (playerType == PlayerType.PlayerB)
         {
             leftKey = KeyCode.LeftArrow;
             leftIndex = 2;
@@ -210,26 +210,26 @@ public class PlayerController : MonoBehaviour
         {
             if (currentGlove == GloveState.BareHand)
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftDownAnimator : bareLeftUpAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightDownAnimator : bareRightUpAnimator;
+                currentLeftAnimator= bareLeftDownAnimator ;
+                currentRightAnimator =bareRightDownAnimator;
             }
             else
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftDownAnimator : glovedLeftUpAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightDownAnimator : glovedRightUpAnimator;
+                currentLeftAnimator= glovedLeftDownAnimator;
+                currentRightAnimator = glovedRightDownAnimator;
             }
         }
         else
         {
             if (currentGlove == GloveState.BareHand)
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? bareLeftUpAnimator : bareLeftDownAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? bareRightUpAnimator : bareRightDownAnimator;
+                currentLeftAnimator = bareLeftUpAnimator ;
+                currentRightAnimator = bareRightUpAnimator ;
             }
             else
             {
-                currentLeftAnimator = playerType == PlayerType.PlayerA ? glovedLeftUpAnimator : glovedLeftDownAnimator;
-                currentRightAnimator = playerType == PlayerType.PlayerA ? glovedRightUpAnimator : glovedRightDownAnimator;
+                currentLeftAnimator =glovedLeftUpAnimator ;
+                currentRightAnimator = glovedRightUpAnimator;
             }
         }
 

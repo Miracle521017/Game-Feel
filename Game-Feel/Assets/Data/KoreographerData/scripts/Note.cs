@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public enum NoteType { ShellFood, RegularVeggie, Cookware, Yam }
+//海鲜类：需要刷子 普通果蔬类：无任何要求 厨具类：需要用抹布 山药类：需要戴手套 （杯子类：需要专门的杯刷）
+//颜色对应：黑 红 灰 棕 白
 public enum MoveDirection { Down, Up }
 
 [System.Serializable]
