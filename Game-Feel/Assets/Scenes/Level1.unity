@@ -463,13 +463,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc6cc6f813451542b214e1dbcb17d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteTypeEventID: NoteTrack
+  noteTypeEventID: NoteType
   laneEventID: NoteTrack
-  shellFoodPrefabs: []
-  regularVeggiePrefabs: []
-  cookwarePrefabs: []
-  yamPrefabs: []
-  cupPrefabs: []
+  shellFoodPrefabs:
+  - {fileID: 3862954239753551006, guid: b5e0789b39e5f044a820a65521042864, type: 3}
+  - {fileID: 3862954239753551006, guid: 257e19848cd2b40479e1539f140cdbcd, type: 3}
+  regularVeggiePrefabs:
+  - {fileID: 3862954239753551006, guid: 27c038edff57a2e499b536182b810f0d, type: 3}
+  - {fileID: 3161207175420983002, guid: 4e3b139193fec714bb3babd30a9161c0, type: 3}
+  cookwarePrefabs:
+  - {fileID: 3862954239753551006, guid: 42a1379bf717c014c804baec40eda022, type: 3}
+  - {fileID: 3862954239753551006, guid: 524e8cb782f0dd944ae699bc18aafbe2, type: 3}
+  yamPrefabs:
+  - {fileID: 3161207175420983002, guid: 395d10265f9ad2145b29bae2039de91f, type: 3}
+  - {fileID: 3161207175420983002, guid: 193a4e2a2024af74588fd8d9f6cd5a16, type: 3}
+  cupPrefabs:
+  - {fileID: 3161207175420983002, guid: fde993073416abf43be147378eee114c, type: 3}
+  - {fileID: 3161207175420983002, guid: ab20b0d72429aaf44b68cbfc790a91ff, type: 3}
   lanes:
   - {fileID: 6865684608860170764}
   - {fileID: 1452910379}
