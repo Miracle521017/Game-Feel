@@ -188,7 +188,7 @@ MonoBehaviour:
   moveSpeed: 5
   perfectTime: 0.5
   activeTime: 0.2
-  requiredGlove: 0
+  requiredGlove: 1
   requiredTool: 0
   targetTag: Checker_Down
   spawnTime: 0

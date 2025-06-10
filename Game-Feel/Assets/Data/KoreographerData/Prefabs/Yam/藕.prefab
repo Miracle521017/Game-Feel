@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a03ecb7e499b5d44ae62e93ebe40420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteType: 1
+  noteType: 3
   isDirectionChange: 0
   moveSpeed: 5
   perfectTime: 0.5

@@ -81,7 +81,7 @@ public class Note : MonoBehaviour
 
     void Update()
     {
-        //CheckCondition();//检测道具状态
+        CheckCondition();//实时检测道具状态
 
         // 更新物体位置
         if (!isJudged)
@@ -211,6 +211,7 @@ public void SetDirection()
     {
         if (playerControllers.Count ==2)
         {
+            Debug.Log("玩家设置正确！");
             if (playerControllers[playerIndex].currentTool == requiredTool && playerControllers[playerIndex].currentGlove==requiredGlove)
             {
                 Debug.Log("道具对应正确！");
