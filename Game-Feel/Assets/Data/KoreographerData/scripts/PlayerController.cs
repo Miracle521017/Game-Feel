@@ -14,13 +14,17 @@ public class PlayerController : MonoBehaviour
     public GameManager_1 gameManager;//游戏全局状态管理
 
     [Header("道具设置")]
-    public List<GameObject> bareLefttoolItems = new List<GameObject>(); // 左手道具列表
-    public List<GameObject> bareRighttoolItems = new List<GameObject>(); // 右手道具列表
-    public List<GameObject> glovedLefttoolItems = new List<GameObject>(); // 左手道具列表
-    public List<GameObject> glovedRighttoolItems = new List<GameObject>(); // 右手道具列表
+    public List<GameObject> bareLeftDownToolItems = new List<GameObject>(); // 左裸手下方道具
+    public List<GameObject> bareRightDownToolItems = new List<GameObject>(); // 右裸手下方道具
+    public List<GameObject> glovedLeftDownToolItems = new List<GameObject>(); // 左戴手套下方道具
+    public List<GameObject> glovedRightDownToolItems = new List<GameObject>(); // 右戴手套下方道具
+    public List<GameObject> bareLeftUpToolItems = new List<GameObject>(); // 左裸手上方道具
+    public List<GameObject> bareRightUpToolItems = new List<GameObject>(); // 右裸手上方道具
+    public List<GameObject> glovedLeftUpToolItems = new List<GameObject>(); // 左戴手套上方道具
+    public List<GameObject> glovedRightUpToolItems = new List<GameObject>(); // 右戴手套上方道具
 
-    public List<GameObject> LefttoolItems; // 使用的左手道具列表
-    public List<GameObject> RighttoolItems ; // 使用的右手道具列表
+    public List<GameObject> currentLeftToolItems; // 使用的左手道具列表
+    public List<GameObject> currentRightToolItems ; // 使用的右手道具列表
 
     public PlayerType playerType; // 当前玩家类型
     public GloveState currentGlove = GloveState.BareHand; // 当前手套状态
@@ -139,35 +143,52 @@ public class PlayerController : MonoBehaviour
             toolKeys = new KeyCode[] { KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3 }; // 玩家B的道具选择按键
             noneKey = KeyCode.Keypad0; // 玩家B的取消道具按键
         }
+        // 初始化列表
+        UpdateCurrentToolLists();
 
-        //初始化列表
-        LefttoolItems=bareLefttoolItems;
-        RighttoolItems=bareRighttoolItems;
+    }
 
+    // 更新当前使用的道具列表
+    void UpdateCurrentToolLists()
+    {
+        if (isDown)
+        {
+            if (currentGlove == GloveState.BareHand)
+            {
+                currentLeftToolItems = bareLeftDownToolItems;
+                currentRightToolItems = bareRightDownToolItems;
+            }
+            else
+            {
+                currentLeftToolItems = glovedLeftDownToolItems;
+                currentRightToolItems = glovedRightDownToolItems;
+            }
+        }
+        else
+        {
+            if (currentGlove == GloveState.BareHand)
+            {
+                currentLeftToolItems = bareLeftUpToolItems;
+                currentRightToolItems = bareRightUpToolItems;
+            }
+            else
+            {
+                currentLeftToolItems = glovedLeftUpToolItems;
+                currentRightToolItems = glovedRightUpToolItems;
+            }
+        }
     }
 
     //手套状态检测
     void HandleGloveToggle()
     {
-        if (Input.GetKeyDown(gloveKey))
+       if (Input.GetKeyDown(gloveKey))
         {
-       
-            if(currentGlove == GloveState.BareHand)
-            {
-                LefttoolItems = glovedLefttoolItems;
-                RighttoolItems = glovedRighttoolItems;
-            }
-            else
-            {
-                LefttoolItems = bareLefttoolItems;
-                RighttoolItems = bareRighttoolItems;
-            }
             currentGlove = currentGlove == GloveState.BareHand ?
                      GloveState.Gloved : GloveState.BareHand;
             UpdateAllVisuals();
-
+            UpdateCurrentToolLists();
             UpdateTools();
-            //TODO：同步道具状态
         }
     }
 
@@ -178,14 +199,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(toolKeys[i]))
             {
-                if(i >= 0 && i < LefttoolItems.Count && i < RighttoolItems.Count)
+                if (i >= 0 && i < currentLeftToolItems.Count && i < currentRightToolItems.Count)
                 {
                     // 取消所有工具（无论当前是否有工具激活）
                     DeactivateAllTools();
 
                     // 激活选中的工具
-                    LefttoolItems[i].SetActive(true);
-                    RighttoolItems[i].SetActive(true);
+                    currentLeftToolItems[i].SetActive(true);
+                    currentRightToolItems[i].SetActive(true);
                     currentTool = (ToolType)(i + 1);
                 }
                 return;
@@ -194,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(noneKey))
         {
-            DeactivateAllTools();//清除所有道具
+            DeactivateAllTools(); // 清除所有道具
             currentTool = ToolType.None;
         }
     }
@@ -206,20 +227,18 @@ public class PlayerController : MonoBehaviour
         if (currentTool != ToolType.None)
         {
             int toolIndex = (int)currentTool - 1;
-            if (toolIndex >= 0 && toolIndex < LefttoolItems.Count && toolIndex < RighttoolItems.Count)
+            if (toolIndex >= 0 && toolIndex < currentLeftToolItems.Count && toolIndex < currentRightToolItems.Count)
             {
-                LefttoolItems[toolIndex].SetActive(true);
-                RighttoolItems[toolIndex].SetActive(true);
+                currentLeftToolItems[toolIndex].SetActive(true);
+                currentRightToolItems[toolIndex].SetActive(true);
             }
         }
     }
 
-    //清除所有道具效果
+    // 清除所有道具效果
     void DeactivateAllTools()
     {
-
-        Debug.Log("清除！");
-        foreach (var item in LefttoolItems)
+        foreach (var item in currentLeftToolItems)
         {
             if (item != null)
             {
@@ -227,7 +246,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        foreach (var item in RighttoolItems)
+        foreach (var item in currentRightToolItems)
         {
             if (item != null)
             {
